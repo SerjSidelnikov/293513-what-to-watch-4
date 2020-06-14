@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Main = ({film, movies}) => {
+import Card from '../card/card';
+
+const Main = ({film, movies, onCardTitleClick}) => {
   const {title, genre, releaseDate} = film;
 
   return (
@@ -105,25 +107,11 @@ const Main = ({film, movies}) => {
 
           <div className="catalog__movies-list">
             {movies.map((movie, index) => (
-              <article
-                key={`movie-${index}`}
-                className="small-movie-card catalog__movies-card"
-              >
-                <div className="small-movie-card__image">
-                  <img
-                    src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                    alt={movie}
-                    width="280"
-                    height="175"
-                  />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a
-                    className="small-movie-card__link"
-                    href="movie-page.html"
-                  >{movie}</a>
-                </h3>
-              </article>
+              <Card
+                key={`title-${index}`}
+                title={movie}
+                onCardTitleClick={onCardTitleClick}
+              />
             ))}
           </div>
 
@@ -157,6 +145,7 @@ Main.propTypes = {
     releaseDate: PropTypes.number.isRequired,
   }).isRequired,
   movies: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  onCardTitleClick: PropTypes.func.isRequired,
 };
 
 export default Main;
