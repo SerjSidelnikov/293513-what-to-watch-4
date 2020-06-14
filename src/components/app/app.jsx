@@ -2,11 +2,9 @@ import React from 'react';
 
 import Main from '../main/main';
 
-const App = ({film}) => { // eslint-disable-line
+const App = (props) => {
   return (
-    <>
-      <Main film={film}/>
-    </>
+    <Main {...props}/>
   );
 };
 
