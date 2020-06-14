@@ -3,13 +3,20 @@ import ReactDOM from 'react-dom';
 
 import App from './components/app/app';
 
-const film = {
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  releaseDate: 2014,
+const data = {
+  film: {
+    title: `The Grand Budapest Hotel`,
+    genre: `Drama`,
+    releaseDate: 2014,
+  },
+  movies: [
+    `Fantastic Beasts`,
+    `Bohemian Rhapsody`,
+    `Macbeth`,
+  ],
 };
 
 ReactDOM.render(
-    <App film={film}/>,
+    <App {...data}/>,
     document.querySelector(`#root`)
 );
