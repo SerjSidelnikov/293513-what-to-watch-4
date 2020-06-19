@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Card = ({title, onCardTitleClick}) => {
+const Card = ({film, onActiveFilm, onCardTitleClick}) => {
+  const {title, poster} = film;
+
   return (
-    <article className="small-movie-card catalog__movies-card">
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseEnter={() => onActiveFilm(film)}
+    >
       <div className="small-movie-card__image">
         <img
-          src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+          src={poster}
           alt={title}
           width="280"
           height="175"
@@ -26,7 +31,12 @@ const Card = ({title, onCardTitleClick}) => {
 };
 
 Card.propTypes = {
-  title: PropTypes.string.isRequired,
+  film: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+  }).isRequired,
+  onActiveFilm: PropTypes.func.isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
 };
 

@@ -1,14 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Main from './main';
-import {promoItem, films} from '../../mocks/testMocks';
+import CardList from './card-list';
+import {films} from '../../mocks/testMocks';
 
-describe(`Main`, () => {
-  it(`Main rendered correctly`, () => {
+describe(`CardList`, () => {
+  it(`CardList rendered correctly`, () => {
     const tree = renderer.create(
-        <Main
-          promoItem={promoItem}
+        <CardList
           films={films}
           onCardTitleClick={() => {}}
         />

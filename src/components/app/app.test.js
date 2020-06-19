@@ -2,13 +2,14 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import App from './app';
-import data from '../../mocks/data';
+import {promoItem, films} from '../../mocks/testMocks';
 
 describe(`App`, () => {
-  it(`App renders correctly`, () => {
+  it(`App rendered correctly`, () => {
     const tree = renderer.create(
         <App
-          {...data}
+          promoItem={promoItem}
+          films={films}
         />
     ).toJSON();
 
