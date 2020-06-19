@@ -2,13 +2,14 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import Card from './card';
-import data from '../../mocks/data';
+import {film} from '../../mocks/testMocks';
 
 describe(`Card`, () => {
-  it(`Card render correctly`, () => {
+  it(`Card rendered correctly`, () => {
     const tree = renderer.create(
         <Card
-          title={data.movies[0]}
+          film={film}
+          onActiveFilm={() => {}}
           onCardTitleClick={() => {}}
         />
     ).toJSON();

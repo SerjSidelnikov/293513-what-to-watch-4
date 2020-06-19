@@ -2,13 +2,13 @@ import React from 'react';
 
 import Main from '../main/main';
 
-const cardTitleHandler = () => {};
+const handleCardTitle = () => {};
 
 const App = (props) => {
   return (
     <Main
       {...props}
-      onCardTitleClick={cardTitleHandler}
+      onCardTitleClick={handleCardTitle}
     />
   );
 };

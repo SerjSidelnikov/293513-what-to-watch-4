@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from '../card/card';
+import CardList from '../card-list/card-list';
 
-const Main = ({film, movies, onCardTitleClick}) => {
-  const {title, genre, releaseDate} = film;
+const Main = ({promoItem, films, onCardTitleClick}) => {
+  const {title, genre, releaseDate} = promoItem;
 
   return (
     <>
@@ -105,15 +105,10 @@ const Main = ({film, movies, onCardTitleClick}) => {
             </li>
           </ul>
 
-          <div className="catalog__movies-list">
-            {movies.map((movie, index) => (
-              <Card
-                key={`title-${index}`}
-                title={movie}
-                onCardTitleClick={onCardTitleClick}
-              />
-            ))}
-          </div>
+          <CardList
+            films={films}
+            onCardTitleClick={onCardTitleClick}
+          />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -139,12 +134,12 @@ const Main = ({film, movies, onCardTitleClick}) => {
 };
 
 Main.propTypes = {
-  film: PropTypes.shape({
+  promoItem: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,
   }).isRequired,
-  movies: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  films: PropTypes.array.isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
 };
 
