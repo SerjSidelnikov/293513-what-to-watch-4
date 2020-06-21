@@ -22,7 +22,7 @@ describe(`Card`, () => {
         />
     );
 
-    const cardTitle = main.find(`.small-movie-card__title`);
+    const cardTitle = main.find(`.small-movie-card`);
     cardTitle.simulate(`click`);
 
     expect(handleCardTitleClick).toHaveBeenCalledTimes(1);

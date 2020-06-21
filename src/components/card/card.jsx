@@ -2,29 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Card = ({film, onActiveFilm, onCardTitleClick}) => {
-  const {title, poster} = film;
+  const {name, thumbnail} = film;
 
   return (
     <article
       className="small-movie-card catalog__movies-card"
       onMouseEnter={() => onActiveFilm(film)}
+      onClick={() => onCardTitleClick(film)}
     >
       <div className="small-movie-card__image">
         <img
-          src={poster}
-          alt={title}
+          src={thumbnail}
+          alt={name}
           width="280"
           height="175"
         />
       </div>
-      <h3
-        className="small-movie-card__title"
-        onClick={onCardTitleClick}
-      >
+      <h3 className="small-movie-card__title">
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
-        >{title}</a>
+          href="#"
+        >{name}</a>
       </h3>
     </article>
   );
@@ -33,7 +31,11 @@ const Card = ({film, onActiveFilm, onCardTitleClick}) => {
 Card.propTypes = {
   film: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.string.isRequired,
+    promo: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
   }).isRequired,
   onActiveFilm: PropTypes.func.isRequired,

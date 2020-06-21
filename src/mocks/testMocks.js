@@ -5,21 +5,33 @@ export const promoItem = {
 };
 
 export const film = {
-  id: 0,
-  title: `Test title`,
-  poster: `https://picsum.photos/id/0`,
+  id: 1,
+  name: `Fantastic Beasts: The Crimes of Grindelwald`,
+  thumbnail: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  genre: `genre`,
+  releaseDate: `2014`,
+  promo: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
 };
 
 export const films = [
   {
     id: 1,
-    title: `Test title 1`,
-    poster: `https://picsum.photos/id/1`,
+    name: `Fantastic Beasts: The Crimes of Grindelwald`,
+    thumbnail: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    genre: `genre`,
+    releaseDate: `2014`,
+    promo: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
   },
   {
     id: 2,
-    title: `Test title 2`,
-    poster: `https://picsum.photos/id/2`,
+    name: `Bohemian Rhapsody`,
+    thumbnail: `img/bohemian-rhapsody.jpg`,
+    genre: `genre`,
+    releaseDate: `2014`,
+    promo: `img/bohemian-rhapsody.jpg`,
+    poster: `img/bohemian-rhapsody.jpg`,
   },
 ];
 
