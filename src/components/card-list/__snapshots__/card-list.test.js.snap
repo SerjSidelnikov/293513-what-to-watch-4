@@ -6,53 +6,53 @@ exports[`CardList CardList rendered correctly 1`] = `
 >
   <article
     className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
     onMouseEnter={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
       <img
-        alt="Test title 1"
+        alt="Fantastic Beasts: The Crimes of Grindelwald"
         height="175"
-        src="https://picsum.photos/id/1"
+        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
         width="280"
       />
     </div>
     <h3
       className="small-movie-card__title"
-      onClick={[Function]}
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="#"
       >
-        Test title 1
+        Fantastic Beasts: The Crimes of Grindelwald
       </a>
     </h3>
   </article>
   <article
     className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
     onMouseEnter={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
       <img
-        alt="Test title 2"
+        alt="Bohemian Rhapsody"
         height="175"
-        src="https://picsum.photos/id/2"
+        src="img/bohemian-rhapsody.jpg"
         width="280"
       />
     </div>
     <h3
       className="small-movie-card__title"
-      onClick={[Function]}
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="#"
       >
-        Test title 2
+        Bohemian Rhapsody
       </a>
     </h3>
   </article>
