@@ -10,7 +10,12 @@ describe(`CardList`, () => {
         <CardList
           films={films}
           onCardTitleClick={() => {}}
-        />
+        />,
+        {
+          createNodeMock: () => {
+            return {};
+          }
+        }
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

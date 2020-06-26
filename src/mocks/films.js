@@ -7,6 +7,7 @@ export default [
     releaseDate: `2014`,
     promo: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.vp9.webm`,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export default [
     releaseDate: `2014`,
     promo: `img/bohemian-rhapsody.jpg`,
     poster: `img/bohemian-rhapsody.jpg`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ export default [
     releaseDate: `2014`,
     promo: `img/macbeth.jpg`,
     poster: `img/macbeth.jpg`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.480p.vp9.webm`,
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ export default [
     releaseDate: `2014`,
     promo: `img/aviator.jpg`,
     poster: `img/aviator.jpg`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   },
   {
     id: 5,
@@ -43,6 +47,7 @@ export default [
     releaseDate: `2014`,
     promo: `img/we-need-to-talk-about-kevin.jpg`,
     poster: `img/we-need-to-talk-about-kevin.jpg`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.480p.vp9.webm`,
   },
   {
     id: 6,
@@ -52,6 +57,7 @@ export default [
     releaseDate: `2014`,
     promo: `img/what-we-do-in-the-shadows.jpg`,
     poster: `img/what-we-do-in-the-shadows.jpg`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   },
   {
     id: 7,
@@ -61,6 +67,7 @@ export default [
     releaseDate: `2014`,
     promo: `img/revenant.jpg`,
     poster: `img/revenant.jpg`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.480p.vp9.webm`,
   },
   {
     id: 8,
@@ -70,5 +77,6 @@ export default [
     releaseDate: `2014`,
     promo: `img/johnny-english.jpg`,
     poster: `img/johnny-english.jpg`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   },
 ];

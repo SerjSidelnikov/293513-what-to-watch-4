@@ -11,7 +11,12 @@ describe(`Main`, () => {
           promoItem={promoItem}
           films={films}
           onCardTitleClick={() => {}}
-        />
+        />,
+        {
+          createNodeMock: () => {
+            return {};
+          }
+        }
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
