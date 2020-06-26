@@ -1,32 +1,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Card = ({film, onActiveFilm, onCardTitleClick}) => {
-  const {name, thumbnail} = film;
+import VideoPlayer from '../video-player/video-player';
 
-  return (
-    <article
-      className="small-movie-card catalog__movies-card"
-      onMouseEnter={() => onActiveFilm(film)}
-      onClick={() => onCardTitleClick(film)}
-    >
-      <div className="small-movie-card__image">
-        <img
-          src={thumbnail}
-          alt={name}
-          width="280"
-          height="175"
-        />
-      </div>
-      <h3 className="small-movie-card__title">
-        <a
-          className="small-movie-card__link"
-          href="#"
-        >{name}</a>
-      </h3>
-    </article>
-  );
-};
+class Card extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isPlaying: false,
+    };
+
+    this._handleMouseEnter = this._handleMouseEnter.bind(this);
+    this._handleMouseLeave = this._handleMouseLeave.bind(this);
+  }
+
+  _handleMouseEnter() {
+    this._timer = setTimeout(() => {
+      this.setState({isPlaying: true});
+    }, 1000);
+  }
+
+  _handleMouseLeave() {
+    clearTimeout(this._timer);
+    this.setState({isPlaying: false});
+  }
+
+  render() {
+    const {isPlaying} = this.state;
+    const {film, onCardTitleClick} = this.props;
+    const {name, preview, poster} = film;
+
+    return (
+      <article
+        className="small-movie-card catalog__movies-card"
+        onMouseEnter={this._handleMouseEnter}
+        onMouseLeave={this._handleMouseLeave}
+        onClick={() => onCardTitleClick(film)}
+      >
+        <div className="small-movie-card__image">
+          <VideoPlayer
+            src={preview}
+            poster={poster}
+            isPlaying={isPlaying}
+            muted={true}
+          />
+        </div>
+        <h3 className="small-movie-card__title">
+          <a
+            className="small-movie-card__link"
+            href="#"
+          >{name}</a>
+        </h3>
+      </article>
+    );
+  }
+}
 
 Card.propTypes = {
   film: PropTypes.shape({
@@ -37,8 +66,8 @@ Card.propTypes = {
     releaseDate: PropTypes.string.isRequired,
     promo: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
   }).isRequired,
-  onActiveFilm: PropTypes.func.isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
 };
 

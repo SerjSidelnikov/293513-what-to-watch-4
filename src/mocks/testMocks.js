@@ -12,6 +12,7 @@ export const film = {
   releaseDate: `2014`,
   promo: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
   poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.vp9.webm`,
 };
 
 export const films = [
@@ -23,6 +24,7 @@ export const films = [
     releaseDate: `2014`,
     promo: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.vp9.webm`,
   },
   {
     id: 2,
@@ -32,6 +34,7 @@ export const films = [
     releaseDate: `2014`,
     promo: `img/bohemian-rhapsody.jpg`,
     poster: `img/bohemian-rhapsody.jpg`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   },
 ];
 

@@ -10,7 +10,12 @@ describe(`App`, () => {
         <App
           promoItem={promoItem}
           films={films}
-        />
+        />,
+        {
+          createNodeMock: () => {
+            return {};
+          }
+        }
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
