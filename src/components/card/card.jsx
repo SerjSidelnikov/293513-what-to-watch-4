@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import VideoPlayer from '../video-player/video-player';
+import {filmType} from '../../types';
 
 const Card = ({film, onCardTitleClick, onMouseEnter, onMouseLeave, isPlaying}) => {
-  const {name, preview, poster} = film;
+  const {title, preview, poster} = film;
 
   return (
     <article
@@ -25,23 +26,14 @@ const Card = ({film, onCardTitleClick, onMouseEnter, onMouseLeave, isPlaying}) =
         <a
           className="small-movie-card__link"
           href="#"
-        >{name}</a>
+        >{title}</a>
       </h3>
     </article>
   );
 };
 
 Card.propTypes = {
-  film: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    thumbnail: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.string.isRequired,
-    promo: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-  }).isRequired,
+  film: filmType,
   onCardTitleClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
