@@ -1,18 +1,18 @@
 import React from 'react';
 
 import {filmType} from '../../types';
-import {getRating} from '../../utils';
+import {ratingFormat, getRatingString} from '../../utils';
+import {ACTORS_MAX_LENGTH} from '../../const';
 
 const Overview = ({film}) => {
   const {rating, voiceCount, description, director, actors} = film;
 
-  const ACTORS_MAX_LENGTH = 4;
-  const ratingString = getRating(rating);
+  const ratingString = getRatingString(rating);
 
   return (
     <>
       <div className="movie-rating">
-        <div className="movie-rating__score">{rating}</div>
+        <div className="movie-rating__score">{ratingFormat(rating)}</div>
         <p className="movie-rating__meta">
           <span className="movie-rating__level">{ratingString}</span>
           <span className="movie-rating__count">{voiceCount} ratings</span>

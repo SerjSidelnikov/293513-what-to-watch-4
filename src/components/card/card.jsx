@@ -12,7 +12,10 @@ const Card = ({film, onCardTitleClick, onMouseEnter, onMouseLeave, isPlaying}) =
       className="small-movie-card catalog__movies-card"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      onClick={() => onCardTitleClick(film)}
+      onClick={(evt) => {
+        evt.preventDefault();
+        onCardTitleClick(film);
+      }}
     >
       <div className="small-movie-card__image">
         <VideoPlayer

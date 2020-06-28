@@ -14,5 +14,13 @@ export const filmType = PropTypes.shape({
   voiceCount: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
   actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  commentIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  reviewIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+}).isRequired;
+
+export const reviewType = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  rating: PropTypes.string.isRequired,
 }).isRequired;

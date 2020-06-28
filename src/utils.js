@@ -1,26 +1,41 @@
-import {ratingEnum} from './const';
+import {RatingEnum} from './const';
 
-export const getRating = (rating) => {
+export const ratingFormat = (rating) => {
+  return rating.toString().split(`.`).join(`,`);
+};
+
+export const getRatingString = (rating) => {
   const calcRating = Math.round(rating);
 
   switch (calcRating) {
     case 0:
     case 1:
     case 2:
-      return ratingEnum.BAD;
+      return RatingEnum.BAD;
     case 3:
     case 4:
-      return ratingEnum.NORMAL;
+      return RatingEnum.NORMAL;
     case 5:
     case 6:
     case 7:
-      return ratingEnum.GOOD;
+      return RatingEnum.GOOD;
     case 8:
     case 9:
-      return ratingEnum.VERY_GOOD;
+      return RatingEnum.VERY_GOOD;
     case 10:
-      return ratingEnum.AWESOME;
+      return RatingEnum.AWESOME;
     default:
-      return `No review`;
+      return `No rating`;
+  }
+};
+
+export const timeFormat = (minutes) => {
+  const hour = Math.floor(minutes / 60);
+  const min = minutes - hour * 60;
+
+  if (minutes < 60) {
+    return `${minutes}m`;
+  } else {
+    return `${hour}h ${min}m`;
   }
 };

@@ -31,7 +31,7 @@ export const film = {
     `Ralph Fiennes`,
     `Jeff Goldblum`,
   ],
-  commentIds: [`0`, `1`, `2`, `3`, `4`, `5`],
+  reviewIds: [`0`, `1`, `2`, `3`, `4`, `5`],
 };
 
 export const films = [
@@ -62,7 +62,7 @@ export const films = [
       `Ralph Fiennes`,
       `Jeff Goldblum`,
     ],
-    commentIds: [`0`, `1`, `2`, `3`, `4`, `5`],
+    reviewIds: [`0`, `1`, `2`, `3`, `4`, `5`],
   },
   {
     id: `2`,
@@ -91,7 +91,31 @@ export const films = [
       `Ralph Fiennes`,
       `Jeff Goldblum`,
     ],
-    commentIds: [`0`, `1`, `2`, `3`, `4`, `5`],
+    reviewIds: [`0`, `1`, `2`, `3`, `4`, `5`],
   },
 ];
 
+export const review = {
+  id: `0`,
+  author: `Kate Muir`,
+  date: `December 24, 2016`,
+  description: `The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.`,
+  rating: `8,9`,
+};
+
+export const reviews = [
+  {
+    id: `0`,
+    author: `Kate Muir`,
+    date: `December 24, 2016`,
+    description: `The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.`,
+    rating: `8,9`,
+  },
+  {
+    id: `1`,
+    author: `Bill Goodykoontz`,
+    date: `December 24, 2016`,
+    description: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+    rating: `7,3`,
+  },
+];

@@ -15,6 +15,10 @@ const withCard = (Component) => {
       this._handleMouseLeave = this._handleMouseLeave.bind(this);
     }
 
+    componentWillUnmount() {
+      clearTimeout(this._timer);
+    }
+
     _handleMouseEnter() {
       this._timer = setTimeout(() => {
         this.setState({isPlaying: true});

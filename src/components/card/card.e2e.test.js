@@ -24,7 +24,7 @@ describe(`Card`, () => {
     );
 
     const cardTitle = main.find(`.small-movie-card`);
-    cardTitle.simulate(`click`);
+    cardTitle.simulate(`click`, {preventDefault: () => {}});
 
     expect(handleCardTitleClick).toHaveBeenCalledTimes(1);
   });
