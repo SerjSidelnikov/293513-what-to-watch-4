@@ -1,13 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import MoviePage from './movie-page';
-import {film, reviews} from '../../mocks/testMocks';
+import Header from './header';
 
-describe(`MoviePage`, () => {
-  it(`MoviePage rendered correctly`, () => {
+describe(`Header`, () => {
+  it(`Header rendered correctly`, () => {
     const tree = renderer.create(
-        <MoviePage film={film} reviews={reviews}/>,
+        <Header/>,
         {
           createNodeMock: () => {
             return {};

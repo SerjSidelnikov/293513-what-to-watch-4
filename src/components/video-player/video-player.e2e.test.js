@@ -11,7 +11,6 @@ Enzyme.configure({
 
 describe(`VideoPlayer`, () => {
   it(`The component has a playback state`, () => {
-    const expectedState = {isPlaying: true};
     const {preview, poster} = film;
 
     const videoPlayer = mount(
@@ -23,13 +22,12 @@ describe(`VideoPlayer`, () => {
         />
     );
 
-    const state = videoPlayer.state();
+    const state = videoPlayer.state(`isPlaying`);
 
-    expect(state).toMatchObject(expectedState);
+    expect(state).toBe(true);
   });
 
   it(`The component has a pause state`, () => {
-    const expectedState = {isPlaying: false};
     const {preview, poster} = film;
 
     const videoPlayer = mount(
@@ -41,8 +39,8 @@ describe(`VideoPlayer`, () => {
         />
     );
 
-    const state = videoPlayer.state();
+    const state = videoPlayer.state(`isPlaying`);
 
-    expect(state).toMatchObject(expectedState);
+    expect(state).toBe(false);
   });
 });

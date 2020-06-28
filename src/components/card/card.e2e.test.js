@@ -17,11 +17,14 @@ describe(`Card`, () => {
         <Card
           film={film}
           onCardTitleClick={handleCardTitleClick}
+          onMouseEnter={() => {}}
+          onMouseLeave={() => {}}
+          isPlaying={false}
         />
     );
 
     const cardTitle = main.find(`.small-movie-card`);
-    cardTitle.simulate(`click`);
+    cardTitle.simulate(`click`, {preventDefault: () => {}});
 
     expect(handleCardTitleClick).toHaveBeenCalledTimes(1);
   });

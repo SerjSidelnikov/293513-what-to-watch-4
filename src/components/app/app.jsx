@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import Main from '../main/main';
@@ -25,7 +26,12 @@ class App extends React.PureComponent {
   _renderScreen() {
     const {activeMovie} = this.state;
     if (activeMovie) {
-      return <MoviePage movie={activeMovie}/>;
+      return (
+        <MoviePage
+          film={activeMovie}
+          reviews={this.props.reviews}
+        />
+      );
     }
     return (
       <Main
@@ -36,7 +42,7 @@ class App extends React.PureComponent {
   }
 
   render() {
-    const {activeMovie} = this.state;
+    const {films, reviews} = this.props;
 
     return (
       <Router>
@@ -46,7 +52,8 @@ class App extends React.PureComponent {
           </Route>
           <Route exact path={`/movie-page`}>
             <MoviePage
-              movie={activeMovie}
+              film={films[0]}
+              reviews={reviews}
             />
           </Route>
         </Switch>
@@ -54,5 +61,10 @@ class App extends React.PureComponent {
     );
   }
 }
+
+App.propTypes = {
+  films: PropTypes.array.isRequired,
+  reviews: PropTypes.array.isRequired,
+};
 
 export default App;
