@@ -17,6 +17,9 @@ describe(`Card`, () => {
         <Card
           film={film}
           onCardTitleClick={handleCardTitleClick}
+          onMouseEnter={() => {}}
+          onMouseLeave={() => {}}
+          isPlaying={false}
         />
     );
 

@@ -46,6 +46,7 @@ class VideoPlayer extends React.PureComponent {
     if (this.props.isPlaying) {
       video.play();
     } else {
+      video.pause();
       video.load();
     }
   }

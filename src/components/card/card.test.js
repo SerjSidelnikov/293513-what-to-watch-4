@@ -10,6 +10,9 @@ describe(`Card`, () => {
         <Card
           film={film}
           onCardTitleClick={() => {}}
+          onMouseLeave={() => {}}
+          onMouseEnter={() => {}}
+          isPlaying={false}
         />,
         {
           createNodeMock: () => {
