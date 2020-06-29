@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import VideoPlayer from '../video-player/video-player';
 import {filmType} from '../../types';
 
-const Card = ({film, onCardTitleClick, onMouseEnter, onMouseLeave, isPlaying}) => {
+const Card = ({film, onMouseEnter, onMouseLeave, isPlaying}) => {
   const {title, preview, poster} = film;
 
   return (
@@ -12,10 +12,6 @@ const Card = ({film, onCardTitleClick, onMouseEnter, onMouseLeave, isPlaying}) =
       className="small-movie-card catalog__movies-card"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      onClick={(evt) => {
-        evt.preventDefault();
-        onCardTitleClick(film);
-      }}
     >
       <div className="small-movie-card__image">
         <VideoPlayer
@@ -37,7 +33,6 @@ const Card = ({film, onCardTitleClick, onMouseEnter, onMouseLeave, isPlaying}) =
 
 Card.propTypes = {
   film: filmType,
-  onCardTitleClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,

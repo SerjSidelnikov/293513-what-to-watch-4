@@ -6,14 +6,13 @@ import withCard from '../../hocs/with-card/with-card';
 
 const CardWrapped = withCard(Card);
 
-const CardList = ({films, onCardTitleClick}) => {
+const CardList = ({films}) => {
   return (
     <div className="catalog__movies-list">
       {films.map((film) => (
         <CardWrapped
           key={film.id}
           film={film}
-          onCardTitleClick={onCardTitleClick}
         />
       ))}
     </div>
@@ -22,7 +21,6 @@ const CardList = ({films, onCardTitleClick}) => {
 
 CardList.propTypes = {
   films: PropTypes.array.isRequired,
-  onCardTitleClick: PropTypes.func.isRequired,
 };
 
 export default CardList;

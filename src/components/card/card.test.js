@@ -9,7 +9,6 @@ describe(`Card`, () => {
     const tree = renderer.create(
         <Card
           film={film}
-          onCardTitleClick={() => {}}
           onMouseLeave={() => {}}
           onMouseEnter={() => {}}
           isPlaying={false}

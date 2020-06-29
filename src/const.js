@@ -14,3 +14,4 @@ export const TabsEnum = {
 
 export const ACTORS_MAX_LENGTH = 4;
 export const MORE_LIKE_FILMS = 4;
+export const ALL_GENRES = `All genres`;
