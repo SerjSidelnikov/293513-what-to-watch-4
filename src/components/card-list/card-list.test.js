@@ -7,10 +7,7 @@ import {films} from '../../mocks/testMocks';
 describe(`CardList`, () => {
   it(`CardList rendered correctly`, () => {
     const tree = renderer.create(
-        <CardList
-          films={films}
-          onCardTitleClick={() => {}}
-        />,
+        <CardList films={films}/>,
         {
           createNodeMock: () => {
             return {};

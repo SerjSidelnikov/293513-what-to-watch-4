@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import Header from '../header/header';
 import Tabs from '../tabs/tabs';
 import CardList from '../card-list/card-list';
-import films from '../../mocks/films';
 import {filmType, reviewType} from '../../types';
 import {MORE_LIKE_FILMS} from '../../const';
 import withTabs from '../../hocs/with-tabs/with-tabs';
 
 const TabsWrapped = withTabs(Tabs);
 
-const MoviePage = ({film, reviews}) => {
+const MoviePage = ({film, films, reviews}) => {
   const {title, genre, release, background, poster} = film;
 
   const filteredFilms = films
@@ -79,7 +79,7 @@ const MoviePage = ({film, reviews}) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <CardList films={filteredFilms} onCardTitleClick={() => {}}/>
+          <CardList films={filteredFilms}/>
         </section>
 
         <footer className="page-footer">
@@ -102,7 +102,16 @@ const MoviePage = ({film, reviews}) => {
 
 MoviePage.propTypes = {
   film: filmType,
+  films: PropTypes.arrayOf(filmType),
   reviews: PropTypes.arrayOf(reviewType),
 };
 
-export default MoviePage;
+const mapStateToProps = (state) => ({
+  film: state.films[0],
+  films: state.films,
+  reviews: state.reviews,
+});
+
+export {MoviePage};
+
+export default connect(mapStateToProps)(MoviePage);
