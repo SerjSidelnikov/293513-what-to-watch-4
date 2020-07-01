@@ -3,7 +3,7 @@ import {
   ActionType,
 } from './reducer';
 import films from '../mocks/films';
-import {ALL_GENRES} from '../const';
+import {ALL_GENRES, MAX_SHOW_FILM} from '../const';
 import reviews from "../mocks/reviews";
 
 describe(`Test reducer`, () => {
@@ -12,6 +12,8 @@ describe(`Test reducer`, () => {
       currentGenre: ALL_GENRES,
       genres: [...new Set(films.map((film) => film.genre))],
       films,
+      chunkFilms: [],
+      isMoreFilms: films.length > MAX_SHOW_FILM,
       reviews,
       promoItem: {
         title: `The Grand Budapest Hotel`,
