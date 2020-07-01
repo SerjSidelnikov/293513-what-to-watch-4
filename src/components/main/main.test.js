@@ -16,6 +16,7 @@ describe(`Main`, () => {
       currentGenre: ALL_GENRES,
       genres: [...new Set(films.map((film) => film.genre))],
       films,
+      isMoreFilms: true,
       reviews,
       promoItem,
     });
@@ -25,9 +26,12 @@ describe(`Main`, () => {
           <Main
             promoItem={promoItem}
             films={films}
+            isMoreFilms={true}
             genres={[...new Set(films.map((film) => film.genre))]}
             currentGenre={ALL_GENRES}
             onChangeGenre={() => {}}
+            onLoadFilms={() => {}}
+            onShowMore={() => {}}
           />
         </Provider>,
         {

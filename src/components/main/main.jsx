@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import Header from '../header/header';
 import CardList from '../card-list/card-list';
 import GenreList from '../genre-list/genre-list';
+import ButtonShowMore from '../button-show-more/button-show-more';
 import {ActionCreator} from '../../reducers/reducer';
 
 class Main extends React.PureComponent {
@@ -84,9 +85,7 @@ class Main extends React.PureComponent {
 
             <CardList films={films}/>
 
-            {isMoreFilms && <div className="catalog__more">
-              <button onClick={onShowMore} className="catalog__button" type="button">Show more</button>
-            </div>}
+            {isMoreFilms && <ButtonShowMore onShowMore={onShowMore}/>}
           </section>
 
           <footer className="page-footer">

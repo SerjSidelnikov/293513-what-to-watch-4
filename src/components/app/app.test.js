@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 
 import App from './app';
-import {ALL_GENRES} from '../../const';
+import {ALL_GENRES, MAX_SHOW_FILM} from '../../const';
 import {films, promoItem} from '../../mocks/testMocks';
 import reviews from "../../mocks/reviews";
 
@@ -16,6 +16,8 @@ describe(`App`, () => {
       currentGenre: ALL_GENRES,
       genres: [...new Set(films.map((film) => film.genre))],
       films,
+      chunkFilms: [],
+      isMoreFilms: films.length > MAX_SHOW_FILM,
       reviews,
       promoItem,
     });
