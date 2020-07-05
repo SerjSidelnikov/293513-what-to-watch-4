@@ -10,7 +10,7 @@ describe(`Test reducer`, () => {
   it(`Should return initial state by default`, () => {
     expect(reducer(undefined, {})).toEqual({
       currentGenre: ALL_GENRES,
-      genres: [...new Set(films.map((film) => film.genre))],
+      genres: [ALL_GENRES, ...new Set(films.map((film) => film.genre))],
       films,
       chunkFilms: [],
       isMoreFilms: films.length > MAX_SHOW_FILM,
