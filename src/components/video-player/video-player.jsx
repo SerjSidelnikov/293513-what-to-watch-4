@@ -36,7 +36,9 @@ class VideoPlayer extends React.PureComponent {
     };
 
     video.ontimeupdate = () => {
-      this.setState({progress: video.currentTime});
+      this.setState({
+        progress: Math.floor(video.currentTime),
+      });
     };
   }
 

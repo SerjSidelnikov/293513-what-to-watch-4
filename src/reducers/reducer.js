@@ -4,7 +4,7 @@ import {ALL_GENRES, MAX_SHOW_FILM} from '../const';
 
 const initialState = {
   currentGenre: ALL_GENRES,
-  genres: [...new Set(films.map((film) => film.genre))],
+  genres: [ALL_GENRES, ...new Set(films.map((film) => film.genre))],
   films,
   chunkFilms: [],
   isMoreFilms: films.length > MAX_SHOW_FILM,
@@ -15,8 +15,6 @@ const initialState = {
     releaseDate: 2014,
   }
 };
-
-window.state = initialState;
 
 const ActionType = {
   CHANGE_GENRE_FILTER: `CHANGE_GENRE_FILTER`,
