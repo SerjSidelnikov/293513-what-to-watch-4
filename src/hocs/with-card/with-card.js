@@ -37,6 +37,8 @@ const withCard = (Component) => {
         <Component
           {...this.props}
           isPlaying={isPlaying}
+          load={true}
+          loop={true}
           onMouseEnter={this._handleMouseEnter}
           onMouseLeave={this._handleMouseLeave}
         />
