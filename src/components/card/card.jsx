@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import VideoPlayer from '../video-player/video-player';
-import {filmType} from '../../types';
-
-const Card = ({film, onMouseEnter, onMouseLeave, isPlaying}) => {
-  const {title, preview, poster} = film;
+const Card = (props) => {
+  const {title, onMouseEnter, onMouseLeave, children} = props;
 
   return (
     <article
@@ -14,12 +11,7 @@ const Card = ({film, onMouseEnter, onMouseLeave, isPlaying}) => {
       onMouseLeave={onMouseLeave}
     >
       <div className="small-movie-card__image">
-        <VideoPlayer
-          src={preview}
-          poster={poster}
-          isPlaying={isPlaying}
-          muted={true}
-        />
+        {children}
       </div>
       <h3 className="small-movie-card__title">
         <a
@@ -32,10 +24,10 @@ const Card = ({film, onMouseEnter, onMouseLeave, isPlaying}) => {
 };
 
 Card.propTypes = {
-  film: filmType,
+  title: PropTypes.string.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Card;

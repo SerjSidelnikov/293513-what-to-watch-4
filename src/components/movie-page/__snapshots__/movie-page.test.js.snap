@@ -271,7 +271,6 @@ Array [
             <video
               autoPlay={false}
               height="100%"
-              loop={true}
               preload="none"
               width="100%"
             />
@@ -298,7 +297,6 @@ Array [
             <video
               autoPlay={false}
               height="100%"
-              loop={true}
               preload="none"
               width="100%"
             />

@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 
 import Card from '../card/card';
 import withCard from '../../hocs/with-card/with-card';
+import withVideo from '../../hocs/with-video/with-video';
 
-const CardWrapped = withCard(Card);
+const CardWrapped = withCard(withVideo(Card));
 
 const CardList = ({films}) => {
   return (
@@ -12,7 +13,10 @@ const CardList = ({films}) => {
       {films.map((film) => (
         <CardWrapped
           key={film.id}
-          film={film}
+          title={film.title}
+          src={film.preview}
+          poster={film.poster}
+          muted={true}
         />
       ))}
     </div>

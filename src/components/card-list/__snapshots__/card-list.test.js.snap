@@ -15,7 +15,6 @@ exports[`CardList CardList rendered correctly 1`] = `
       <video
         autoPlay={false}
         height="100%"
-        loop={true}
         preload="none"
         width="100%"
       />
@@ -42,7 +41,6 @@ exports[`CardList CardList rendered correctly 1`] = `
       <video
         autoPlay={false}
         height="100%"
-        loop={true}
         preload="none"
         width="100%"
       />
