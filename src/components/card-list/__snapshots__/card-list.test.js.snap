@@ -25,9 +25,7 @@ exports[`CardList CardList rendered correctly 1`] = `
       <a
         className="small-movie-card__link"
         href="#"
-      >
-        Fantastic Beasts: The Crimes of Grindelwald
-      </a>
+      />
     </h3>
   </article>
   <article
@@ -51,9 +49,7 @@ exports[`CardList CardList rendered correctly 1`] = `
       <a
         className="small-movie-card__link"
         href="#"
-      >
-        Bohemian Rhapsody
-      </a>
+      />
     </h3>
   </article>
 </div>

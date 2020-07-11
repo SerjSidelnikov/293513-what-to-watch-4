@@ -1,12 +1,11 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import {Provider} from 'react-redux';
-import configureStore from 'redux-mock-store';
+import MockAdapter from 'axios-mock-adapter';
+import {createApi} from '../../api';
 
-import App from './app';
+import {reducer, ActionType, Operation} from './data';
 import {ALL_GENRES} from '../../const';
 import reviews from "../../mocks/reviews";
-import NameSpace from '../../reducers/name-space';
+
+const api = createApi(() => {});
 
 const films = [
   {
@@ -57,31 +56,53 @@ const films = [
   },
 ];
 
-const mockStore = configureStore([]);
-
-describe(`App`, () => {
-  it(`App rendered correctly`, () => {
-    const store = mockStore({
-      [NameSpace.DATA]: {
-        films,
-        genre: ALL_GENRES,
-        reviews,
-        promoFilm: {},
-        isLoading: false,
-      }
+describe(`Data reducer work correctly`, () => {
+  it(`Reducer without additional parameters should return initial state`, () => {
+    expect(reducer(void 0, {})).toEqual({
+      films: [],
+      genre: ALL_GENRES,
+      reviews,
+      promoFilm: {},
+      isLoading: true,
     });
+  });
 
-    const tree = renderer.create(
-        <Provider store={store}>
-          <App/>
-        </Provider>,
-        {
-          createNodeMock: () => {
-            return {};
-          }
-        }
-    ).toJSON();
+  it(`Reducer should update films by load questions`, () => {
+    expect(reducer({
+      films: []
+    }, {
+      type: ActionType.LOAD_FILMS,
+      payload: films,
+    })).toEqual({films});
+  });
 
-    expect(tree).toMatchSnapshot();
+  it(`Should change genre filter`, () => {
+    expect(reducer({
+      genre: ALL_GENRES,
+    }, {
+      type: ActionType.CHANGE_GENRE_FILTER,
+      payload: `Comedies`
+    })).toEqual({
+      genre: `Comedies`,
+    });
+  });
+
+  it(`Should make a correct API GET call to /films`, () => {
+    const dispatch = jest.fn();
+    const apiMock = new MockAdapter(api);
+    const filmsLoader = Operation.loadFilms();
+
+    apiMock
+      .onGet(`/films`)
+      .reply(200, [{fake: true}]);
+
+    return filmsLoader(dispatch, jest.fn(), api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalled();
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_FILMS,
+          payload: [{fake: true}],
+        });
+      });
   });
 });

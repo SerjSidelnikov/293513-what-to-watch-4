@@ -1,6 +1,6 @@
 export default [
   {
-    id: `1`,
+    id: 1,
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.vp9.webm`,
@@ -8,7 +8,7 @@ export default [
     background: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     cover: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     genre: `Comedies`,
-    release: `2014`,
+    release: 2014,
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 8.9,
     voiceCount: 240,
@@ -30,7 +30,7 @@ export default [
     reviewIds: [`0`, `1`, `2`, `3`, `4`, `5`],
   },
   {
-    id: `2`,
+    id: 2,
     title: `Bohemian Rhapsody`,
     poster: `img/bohemian-rhapsody.jpg`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
@@ -38,7 +38,7 @@ export default [
     background: `img/bohemian-rhapsody.jpg`,
     cover: `img/bohemian-rhapsody.jpg`,
     genre: `Documentary`,
-    release: `2014`,
+    release: 2014,
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 8.9,
     voiceCount: 240,
@@ -60,7 +60,7 @@ export default [
     reviewIds: [`0`, `1`, `2`, `3`, `4`, `5`],
   },
   {
-    id: `3`,
+    id: 3,
     title: `Macbeth`,
     poster: `img/macbeth.jpg`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.480p.vp9.webm`,
@@ -68,7 +68,7 @@ export default [
     background: `img/macbeth.jpg`,
     cover: `img/macbeth.jpg`,
     genre: `Dramas`,
-    release: `2014`,
+    release: 2014,
     description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
     rating: 8.9,
     voiceCount: 240,
@@ -90,7 +90,7 @@ export default [
     reviewIds: [`0`, `1`, `2`, `3`, `4`, `5`],
   },
   {
-    id: `4`,
+    id: 4,
     title: `Aviator`,
     poster: `img/aviator.jpg`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,

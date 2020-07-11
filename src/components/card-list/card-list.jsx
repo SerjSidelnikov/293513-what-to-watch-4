@@ -13,7 +13,7 @@ const CardList = ({films}) => {
       {films.map((film) => (
         <CardWrapped
           key={film.id}
-          title={film.name}
+          name={film.name}
           src={film[`preview_video_link`]}
           poster={film[`poster_image`]}
           muted={true}

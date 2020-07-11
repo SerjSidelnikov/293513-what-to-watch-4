@@ -1,11 +1,11 @@
 // import films from '../mocks/films';
-// import reviews from '../../mocks/reviews';
+import reviews from '../../mocks/reviews';
 import {ALL_GENRES} from '../../const';
 
 const initialState = {
   films: [],
   genre: ALL_GENRES,
-  // reviews,
+  reviews,
   promoFilm: {},
   isLoading: true,
 };
