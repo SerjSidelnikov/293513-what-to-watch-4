@@ -17,9 +17,13 @@ const App = () => {
         <Route exact path={`/`}>
           <Main/>
         </Route>
-        <Route exact path={`/movie-page`}>
-          <MoviePage/>
-        </Route>
+        <Route
+          exact
+          path={`/movie-page/:id`}
+          render={(routeProps) => (
+            <MoviePage {...routeProps}/>
+          )}
+        />
         <Route exact path={`/player`} render={(routeProps) => (
           <WrappedPlayer {...routeProps} film={films[0]}/>
         )}/>
