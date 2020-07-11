@@ -9,8 +9,8 @@ Array [
       className="movie-card__bg"
     >
       <img
-        alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        alt="No Country for Old Men"
+        src="https://htmlacademy-react-3.appspot.com/wtw/static/film/background/No_Country_for_Old_Men.jpg"
       />
     </div>
     <h1
@@ -69,9 +69,9 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="The Grand Budapest Hotel poster"
+            alt="No Country for Old Men"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
+            src="https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/No_Country_for_Old_Men.jpg"
             width="218"
           />
         </div>
@@ -81,7 +81,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            The Grand Budapest Hotel
+            No Country for Old Men
           </h2>
           <p
             className="movie-card__meta"
@@ -89,12 +89,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Drama
+              Crime
             </span>
             <span
               className="movie-card__year"
             >
-              2014
+              2007
             </span>
           </p>
           <div
@@ -156,6 +156,17 @@ Array [
         className="catalog__genres-list"
       >
         <li
+          className="catalog__genres-item catalog__genres-item--active"
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+            onClick={[Function]}
+          >
+            All genres
+          </a>
+        </li>
+        <li
           className="catalog__genres-item"
         >
           <a
@@ -163,7 +174,7 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            genre
+            Crime
           </a>
         </li>
       </ul>
@@ -192,7 +203,7 @@ Array [
               className="small-movie-card__link"
               href="#"
             >
-              Fantastic Beasts: The Crimes of Grindelwald
+              Once Upon a Time in America
             </a>
           </h3>
         </article>
@@ -218,21 +229,10 @@ Array [
               className="small-movie-card__link"
               href="#"
             >
-              Bohemian Rhapsody
+              No Country for Old Men
             </a>
           </h3>
         </article>
-      </div>
-      <div
-        className="catalog__more"
-      >
-        <button
-          className="catalog__button"
-          onClick={[Function]}
-          type="button"
-        >
-          Show more
-        </button>
       </div>
     </section>
     <footer

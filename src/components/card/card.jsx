@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Card = (props) => {
-  const {title, onMouseEnter, onMouseLeave, children} = props;
+  const {name, onMouseEnter, onMouseLeave, children} = props;
 
   return (
     <article
@@ -17,14 +17,14 @@ const Card = (props) => {
         <a
           className="small-movie-card__link"
           href="#"
-        >{title}</a>
+        >{name}</a>
       </h3>
     </article>
   );
 };
 
 Card.propTypes = {
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
