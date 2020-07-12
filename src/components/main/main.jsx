@@ -1,18 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import Header from '../header/header';
 import Catalog from '../catalog/catalog';
-import {getIsLoading, getPromoFilm} from '../../reducers/data/selectors';
 import {filmType} from '../../types';
 import withCatalog from '../../hocs/with-catalog/with-catalog';
 
 const CatalogWrapped = withCatalog(Catalog);
 
-const Main = ({promoFilm, isLoading}) => {
-  return (!isLoading &&
+const Main = ({promoFilm}) => {
+  return (
     <>
       <section className="movie-card">
         <div className="movie-card__bg">
@@ -83,14 +80,6 @@ const Main = ({promoFilm, isLoading}) => {
 
 Main.propTypes = {
   promoFilm: filmType,
-  isLoading: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state) =>({
-  promoFilm: getPromoFilm(state),
-  isLoading: getIsLoading(state),
-});
-
-export {Main};
-
-export default connect(mapStateToProps)(Main);
+export default Main;

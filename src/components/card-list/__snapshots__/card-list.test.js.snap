@@ -25,7 +25,9 @@ exports[`CardList CardList rendered correctly 1`] = `
       <a
         className="small-movie-card__link"
         href="#"
-      />
+      >
+        Once Upon a Time in America
+      </a>
     </h3>
   </article>
   <article
@@ -49,7 +51,9 @@ exports[`CardList CardList rendered correctly 1`] = `
       <a
         className="small-movie-card__link"
         href="#"
-      />
+      >
+        No Country for Old Men
+      </a>
     </h3>
   </article>
 </div>

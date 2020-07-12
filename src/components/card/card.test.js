@@ -2,17 +2,19 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import Card from './card';
-import {film} from '../../mocks/testMocks';
+
+const Element = () => <div>children</div>;
 
 describe(`Card`, () => {
   it(`Card rendered correctly`, () => {
     const tree = renderer.create(
         <Card
-          film={film}
+          name={``}
           onMouseLeave={() => {}}
           onMouseEnter={() => {}}
-          isPlaying={false}
-        />,
+        >
+          <Element/>
+        </Card>,
         {
           createNodeMock: () => {
             return {};

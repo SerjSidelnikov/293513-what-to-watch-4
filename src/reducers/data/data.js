@@ -1,4 +1,3 @@
-// import films from '../mocks/films';
 import reviews from '../../mocks/reviews';
 import {ALL_GENRES} from '../../const';
 

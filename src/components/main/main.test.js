@@ -6,8 +6,9 @@ import configureStore from 'redux-mock-store';
 
 import Main from './main';
 import NameSpace from '../../reducers/name-space';
-import {ALL_GENRES} from '../../const';
+import {ALL_GENRES, AuthorizationStatus} from '../../const';
 import reviews from '../../mocks/reviews';
+
 const mockStore = configureStore([]);
 
 const promoFilm = {
@@ -91,7 +92,10 @@ describe(`Main`, () => {
         reviews,
         promoFilm,
         isLoading: false,
-      }
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
+      },
     });
 
     const tree = renderer.create(
@@ -99,7 +103,6 @@ describe(`Main`, () => {
           <BrowserRouter>
             <Main
               promoFilm={promoFilm}
-              isLoading={false}
             />
           </BrowserRouter>
         </Provider>,

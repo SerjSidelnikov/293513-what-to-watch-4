@@ -8,14 +8,20 @@ exports[`Card Card rendered correctly 1`] = `
 >
   <div
     className="small-movie-card__image"
-  />
+  >
+    <div>
+      children
+    </div>
+  </div>
   <h3
     className="small-movie-card__title"
   >
     <a
       className="small-movie-card__link"
       href="#"
-    />
+    >
+      
+    </a>
   </h3>
 </article>
 `;
