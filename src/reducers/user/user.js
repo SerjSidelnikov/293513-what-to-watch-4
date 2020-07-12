@@ -1,17 +1,24 @@
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus, Errors} from '../../const';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  error: false,
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  ERROR: `ERROR`,
 };
 
 const ActionCreator = {
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: status,
+  }),
+
+  getError: () => ({
+    type: ActionType.ERROR,
+    payload: true,
   }),
 };
 
@@ -20,6 +27,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return Object.assign({}, state, {
         authorizationStatus: action.payload,
+      });
+
+    case ActionType.ERROR:
+      return Object.assign({}, state, {
+        error: action.payload,
       });
 
     default:
@@ -45,7 +57,9 @@ const Operation = {
     }).then(() => {
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
     }).catch((err) => {
-      throw err;
+      if (err.message === Errors.BAD_REQUEST) {
+        dispatch(ActionCreator.getError());
+      }
     });
   }
 };

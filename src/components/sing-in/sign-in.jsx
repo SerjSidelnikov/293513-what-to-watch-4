@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {Operation} from '../../reducers/user/user';
+import {getError} from '../../reducers/user/selectors';
 
 class SignIn extends React.PureComponent {
   constructor(props) {
@@ -25,6 +26,8 @@ class SignIn extends React.PureComponent {
   }
 
   render() {
+    const {error} = this.props;
+
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
@@ -41,6 +44,9 @@ class SignIn extends React.PureComponent {
 
         <div className="sign-in user-page__content">
           <form className="sign-in__form" onSubmit={this._handleSubmit}>
+            {error && <div className="sign-in__message">
+              <p>Please enter a valid email address</p>
+            </div>}
             <div className="sign-in__fields">
               <div className="sign-in__field">
                 <input
@@ -89,7 +95,12 @@ class SignIn extends React.PureComponent {
 
 SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  error: PropTypes.bool.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  error: getError(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit: (authData) => {
@@ -97,4 +108,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -17,6 +17,10 @@ export const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
+export const Errors = {
+  BAD_REQUEST: `Request failed with status code 400`,
+};
+
 export const ACTORS_MAX_LENGTH = 4;
 export const MORE_LIKE_FILMS = 4;
 export const ALL_GENRES = `All genres`;
