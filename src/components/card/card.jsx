@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 const Card = (props) => {
-  const {name, onMouseEnter, onMouseLeave, children} = props;
+  const {id, name, onMouseEnter, onMouseLeave, children} = props;
 
   return (
     <article
@@ -14,16 +15,17 @@ const Card = (props) => {
         {children}
       </div>
       <h3 className="small-movie-card__title">
-        <a
+        <Link
+          to={`/films/${id}`}
           className="small-movie-card__link"
-          href="#"
-        >{name}</a>
+        >{name}</Link>
       </h3>
     </article>
   );
 };
 
 Card.propTypes = {
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,

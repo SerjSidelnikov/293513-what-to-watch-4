@@ -7,54 +7,100 @@ import Main from '../main/main';
 import MoviePage from '../movie-page/movie-page';
 import Player from '../player/player';
 import SignIn from '../sing-in/sign-in';
-import films from '../../mocks/films';
+import AddReview from '../add-review/add-review';
 import withVideo from '../../hocs/with-video/with-video';
 import withVideoPlayer from '../../hocs/with-video-palyer/with-video-player';
 import {getAuthorizationStatus} from '../../reducers/user/selectors';
 import {AuthorizationStatus} from '../../const';
-import {getIsLoading, getPromoFilm} from '../../reducers/data/selectors';
+import {
+  getFilms,
+  getIdLoadingFilms,
+  getIdLoadingPromo,
+  getPromoFilm
+} from '../../reducers/data/selectors';
 import {filmType} from '../../types';
+import {Operation as UserOperation} from '../../reducers/user/user';
+import {Operation as DataOperation} from '../../reducers/data/data';
 
 const WrappedPlayer = withVideoPlayer(withVideo(Player));
 
-const App = ({authorizationStatus, isLoading, promoFilm}) => {
-  return (!isLoading &&
-    <Router>
-      <Switch>
-        <Route exact path={`/`}>
-          <Main promoFilm={promoFilm}/>
-        </Route>
-        <Route
-          exact
-          path={`/movie-page/:id`}
-          render={(routeProps) => (
-            <MoviePage {...routeProps}/>
-          )}
-        />
-        <Route exact path={`/player`} render={(routeProps) => (
-          <WrappedPlayer {...routeProps} film={films[0]}/>
-        )}/>
-        <Route exact path={`/login`}>
-          {authorizationStatus === AuthorizationStatus.AUTH
-            ? <Redirect to={`/`}/>
-            : <SignIn/>
-          }
-        </Route>
-      </Switch>
-    </Router>
-  );
-};
+class App extends React.PureComponent {
+  componentDidMount() {
+    const {checkAuth, loadFilms, loadPromoFilm} = this.props;
+    checkAuth();
+    loadPromoFilm();
+    loadFilms();
+  }
+
+  render() {
+    let {authorizationStatus, isLoadingFilms, isLoadingPromo, promoFilm, films} = this.props;
+    if (isLoadingFilms || isLoadingPromo) {
+      return null;
+    }
+
+    return (
+      <Router>
+        <Switch>
+          <Route exact path={`/`}>
+            <Main promoFilm={promoFilm}/>
+          </Route>
+          <Route
+            exact
+            path={`/films/:id`}
+            render={(routeProps) => {
+              return <MoviePage {...routeProps}/>;
+            }}
+          />
+          <Route exact path={`/player`} render={(routeProps) => (
+            <WrappedPlayer {...routeProps} film={films[0]}/>
+          )}/>
+          <Route exact path={`/login`}>
+            {authorizationStatus === AuthorizationStatus.AUTH
+              ? <Redirect to={`/`}/>
+              : <SignIn/>
+            }
+          </Route>
+          <Route exact path={`/review`}>
+            {authorizationStatus !== AuthorizationStatus.AUTH
+              ? <Redirect to={`/`}/>
+              : <AddReview/>
+            }
+          </Route>
+        </Switch>
+      </Router>
+    );
+  }
+}
 
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  isLoadingFilms: PropTypes.bool.isRequired,
+  isLoadingPromo: PropTypes.bool.isRequired,
   promoFilm: filmType,
+  films: PropTypes.arrayOf(filmType).isRequired,
+  checkAuth: PropTypes.func.isRequired,
+  loadFilms: PropTypes.func.isRequired,
+  loadPromoFilm: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
-  isLoading: getIsLoading(state),
+  isLoadingFilms: getIdLoadingFilms(state),
+  isLoadingPromo: getIdLoadingPromo(state),
   promoFilm: getPromoFilm(state),
+  films: getFilms(state),
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  checkAuth: () => {
+    dispatch(UserOperation.checkAuth());
+  },
+  loadFilms: () => {
+    dispatch(DataOperation.loadFilms());
+  },
+  loadPromoFilm: () => {
+    dispatch(DataOperation.loadPromoFilms());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

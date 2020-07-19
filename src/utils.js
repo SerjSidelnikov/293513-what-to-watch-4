@@ -39,3 +39,13 @@ export const timeFormat = (minutes) => {
     return `${hour}h ${min}m`;
   }
 };
+
+export const dateFormat = (date) => {
+  const formatter = new Intl.DateTimeFormat(`en-US`, {
+    month: `long`,
+    day: `2-digit`,
+    year: `numeric`,
+  });
+
+  return formatter.format(new Date(date));
+};

@@ -4,10 +4,6 @@ import NameSpace from '../name-space';
 
 const NAME_SPACE = NameSpace.DATA;
 
-export const getIsLoading = (state) => {
-  return state[NAME_SPACE].isLoading;
-};
-
 export const getFilms = (state) => {
   return state[NAME_SPACE].films;
 };
@@ -31,4 +27,12 @@ export const getFilteredFilms = createSelector(
 
 export const getPromoFilm = (state) => {
   return state[NAME_SPACE].promoFilm;
+};
+
+export const getIdLoadingFilms = (state) => {
+  return state[NAME_SPACE].isLoadingFilms;
+};
+
+export const getIdLoadingPromo = (state) => {
+  return state[NAME_SPACE].isLoadingPromo;
 };

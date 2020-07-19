@@ -1,9 +1,9 @@
 export const RatingEnum = {
-  BAD: `bad`,
-  NORMAL: `normal`,
-  GOOD: `good`,
-  VERY_GOOD: `very good`,
-  AWESOME: `awesome`,
+  BAD: `Bad`,
+  NORMAL: `Normal`,
+  GOOD: `Good`,
+  VERY_GOOD: `Very good`,
+  AWESOME: `Awesome`,
 };
 
 export const TabsEnum = {

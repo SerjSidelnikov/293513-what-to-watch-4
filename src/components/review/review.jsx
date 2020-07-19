@@ -1,19 +1,19 @@
 import React from 'react';
 
 import {reviewType} from '../../types';
-import {ratingFormat} from '../../utils';
+import {ratingFormat, dateFormat} from '../../utils';
 
 const Review = ({review}) => {
-  const {author, date, description, rating} = review;
+  const {user, date, comment, rating} = review;
 
   return (
     <div className="review">
       <blockquote className="review__quote">
-        <p className="review__text">{description}</p>
+        <p className="review__text">{comment}</p>
 
         <footer className="review__details">
-          <cite className="review__author">{author}r</cite>
-          <time className="review__date" dateTime="2016-12-24">{date}</time>
+          <cite className="review__author">{user.name}r</cite>
+          <time className="review__date" dateTime="2016-12-24">{dateFormat(date)}</time>
         </footer>
       </blockquote>
 
