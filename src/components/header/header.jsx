@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {getAuthorizationStatus} from '../../reducers/user/selectors';
 import {AuthorizationStatus} from '../../const';
 
-const Header = ({authorizationStatus}) => {
+const Header = ({authorizationStatus, children}) => {
   return (
     <header className="page-header movie-card__head">
       <div className="logo">
@@ -16,6 +16,8 @@ const Header = ({authorizationStatus}) => {
           <span className="logo__letter logo__letter--3">W</span>
         </Link>
       </div>
+
+      {children}
 
       <div className="user-block">
         {
@@ -34,6 +36,7 @@ const Header = ({authorizationStatus}) => {
 
 Header.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
+  children: PropTypes.node,
 };
 
 const mapStateToProps = (state) => ({

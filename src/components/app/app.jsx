@@ -8,6 +8,7 @@ import MoviePage from '../movie-page/movie-page';
 import Player from '../player/player';
 import SignIn from '../sing-in/sign-in';
 import AddReview from '../add-review/add-review';
+import PrivateRoute from '../private-route/private-route';
 import withVideo from '../../hocs/with-video/with-video';
 import withVideoPlayer from '../../hocs/with-video-palyer/with-video-player';
 import {getAuthorizationStatus} from '../../reducers/user/selectors';
@@ -51,6 +52,13 @@ class App extends React.PureComponent {
               return <MoviePage {...routeProps}/>;
             }}
           />
+          <PrivateRoute
+            exact
+            path={`/films/:id/review`}
+            render={(routeProps) => {
+              return <AddReview {...routeProps}/>;
+            }}
+          />
           <Route exact path={`/player/:id`} render={(routeProps) => (
             <WrappedPlayer {...routeProps}/>
           )}/>
@@ -58,12 +66,6 @@ class App extends React.PureComponent {
             {authorizationStatus === AuthorizationStatus.AUTH
               ? <Redirect to={`/`}/>
               : <SignIn/>
-            }
-          </Route>
-          <Route exact path={`/review`}>
-            {authorizationStatus !== AuthorizationStatus.AUTH
-              ? <Redirect to={`/`}/>
-              : <AddReview/>
             }
           </Route>
         </Switch>

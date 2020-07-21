@@ -9,3 +9,7 @@ export const getReviews = (state) => {
 export const getIsLoadingReviews = (state) => {
   return state[NAME_SPACE].isLoading;
 };
+
+export const getStatusTransfer = (state) => {
+  return state[NAME_SPACE].statusTransfer;
+};
