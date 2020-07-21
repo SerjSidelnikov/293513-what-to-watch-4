@@ -51,8 +51,8 @@ class App extends React.PureComponent {
               return <MoviePage {...routeProps}/>;
             }}
           />
-          <Route exact path={`/player`} render={(routeProps) => (
-            <WrappedPlayer {...routeProps} film={films[0]}/>
+          <Route exact path={`/player/:id`} render={(routeProps) => (
+            <WrappedPlayer {...routeProps}/>
           )}/>
           <Route exact path={`/login`}>
             {authorizationStatus === AuthorizationStatus.AUTH

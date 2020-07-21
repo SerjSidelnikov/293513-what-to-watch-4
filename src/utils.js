@@ -49,3 +49,12 @@ export const dateFormat = (date) => {
 
   return formatter.format(new Date(date));
 };
+
+export const timeLeftFormat = (progress, duration) => {
+  const current = duration - progress;
+  const hour = `${Math.floor(current / 3600)}`.padStart(2, `0`);
+  const min = `${Math.floor(current / 60) - (hour * 60)}`.padStart(2, `0`);
+  const seconds = `${Math.floor(current % 60)}`.padStart(2, `0`);
+
+  return `${hour}:${min}:${seconds}`;
+};

@@ -1,6 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import {filmType} from '../../types';
+import {getFilms} from '../../reducers/data/selectors';
 
 const withVideoPlayer = (Component) => {
   class WithVideoPlayer extends React.PureComponent {
@@ -21,8 +24,10 @@ const withVideoPlayer = (Component) => {
     }
 
     render() {
-      const {film} = this.props;
-      const {src, poster} = film;
+      const {films, match} = this.props;
+      const id = parseInt(match.params.id, 10);
+      const film = films.find((it) => it.id === id);
+      const {name, 'video_link': src, 'preview_image': poster, 'run_time': time} = film;
       const {isPlaying} = this.state;
 
       return (
@@ -33,6 +38,9 @@ const withVideoPlayer = (Component) => {
           isPlaying={isPlaying}
           muted={false}
           load={false}
+          loop={false}
+          time={time}
+          name={name}
           onTogglePlaying={this._handleTogglePlaying}
         />
       );
@@ -40,10 +48,19 @@ const withVideoPlayer = (Component) => {
   }
 
   WithVideoPlayer.propTypes = {
-    film: filmType,
+    films: PropTypes.arrayOf(filmType).isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        id: PropTypes.string,
+      }).isRequired
+    }).isRequired,
   };
 
-  return WithVideoPlayer;
+  const mapStateToProps = (state) => ({
+    films: getFilms(state),
+  });
+
+  return connect(mapStateToProps)(WithVideoPlayer);
 };
 
 export default withVideoPlayer;
