@@ -1,9 +1,9 @@
 export const RatingEnum = {
-  BAD: `bad`,
-  NORMAL: `normal`,
-  GOOD: `good`,
-  VERY_GOOD: `very good`,
-  AWESOME: `awesome`,
+  BAD: `Bad`,
+  NORMAL: `Normal`,
+  GOOD: `Good`,
+  VERY_GOOD: `Very good`,
+  AWESOME: `Awesome`,
 };
 
 export const TabsEnum = {
@@ -21,7 +21,14 @@ export const Errors = {
   BAD_REQUEST: `Request failed with status code 400`,
 };
 
+export const Status = {
+  PENDING: `pending`,
+  SUCCESS: `success`,
+  ERROR: `error`,
+};
+
 export const ACTORS_MAX_LENGTH = 4;
 export const MORE_LIKE_FILMS = 4;
 export const ALL_GENRES = `All genres`;
 export const MAX_SHOW_FILM = 8;
+export const COUNT_RATING = 5;

@@ -4,8 +4,7 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 
 import App from './app';
-import {ALL_GENRES, AuthorizationStatus} from '../../const';
-import reviews from "../../mocks/reviews";
+import {ALL_GENRES, AuthorizationStatus, Status} from '../../const';
 import NameSpace from '../../reducers/name-space';
 
 const films = [
@@ -88,12 +87,17 @@ describe(`App`, () => {
       [NameSpace.DATA]: {
         films,
         genre: ALL_GENRES,
-        reviews,
         promoFilm,
-        isLoading: false,
+        isLoadingFilms: true,
+        isLoadingPromo: true,
       },
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.NO_AUTH,
+      },
+      [NameSpace.REVIEWS]: {
+        reviews: [],
+        isLoading: true,
+        statusTransfer: Status.PENDING,
       }
     });
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {BrowserRouter} from 'react-router-dom';
 
 import CardList from './card-list';
 
@@ -55,7 +56,9 @@ const films = [
 describe(`CardList`, () => {
   it(`CardList rendered correctly`, () => {
     const tree = renderer.create(
-        <CardList films={films}/>,
+        <BrowserRouter>
+          <CardList films={films}/>
+        </BrowserRouter>,
         {
           createNodeMock: () => {
             return {};

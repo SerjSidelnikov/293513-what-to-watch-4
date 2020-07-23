@@ -101,7 +101,7 @@ Array [
           >
             <a
               className="btn btn--play movie-card__button"
-              href="/player"
+              href="/player/2"
               onClick={[Function]}
               type="button"
             >
@@ -200,7 +200,8 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="#"
+              href="/films/1"
+              onClick={[Function]}
             >
               Once Upon a Time in America
             </a>
@@ -226,7 +227,8 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="#"
+              href="/films/2"
+              onClick={[Function]}
             >
               No Country for Old Men
             </a>

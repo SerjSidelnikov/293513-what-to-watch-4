@@ -4,7 +4,7 @@ import {filmType} from '../../types';
 import {timeFormat} from '../../utils';
 
 const Details = ({film}) => {
-  const {director, actors, duration, genre, release} = film;
+  const {director, starring, 'run_time': duration, genre, released} = film;
   const time = timeFormat(duration);
 
   return (
@@ -17,7 +17,7 @@ const Details = ({film}) => {
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Starring</strong>
           <span className="movie-card__details-value">
-            {actors.join(`\n`)}
+            {starring.join(`\n`)}
           </span>
         </p>
       </div>
@@ -33,7 +33,7 @@ const Details = ({film}) => {
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Released</strong>
-          <span className="movie-card__details-value">{release}</span>
+          <span className="movie-card__details-value">{released}</span>
         </p>
       </div>
     </div>

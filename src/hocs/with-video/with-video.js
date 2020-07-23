@@ -12,6 +12,7 @@ const withVideo = (Component) => {
         isLoading: true,
         isPlaying: props.isPlaying,
         progress: 0,
+        duration: 0,
       };
 
       this._handleChangeFullScreen = this._handleChangeFullScreen.bind(this);
@@ -26,7 +27,10 @@ const withVideo = (Component) => {
       video.muted = muted;
 
       video.oncanplaythrough = () => {
-        this.setState({isLoading: false});
+        this.setState({
+          isLoading: false,
+          duration: video.duration,
+        });
       };
 
       video.onplay = () => {
@@ -41,9 +45,19 @@ const withVideo = (Component) => {
       };
 
       video.ontimeupdate = () => {
+        const {loop} = this.props;
+        const current = Math.floor(video.currentTime);
+        const duration = Math.floor(video.duration);
+
         this.setState({
-          progress: Math.floor(video.currentTime),
+          progress: current,
         });
+
+        if (!loop && (current === duration)) {
+          this.setState({
+            isPlaying: false,
+          });
+        }
       };
     }
 
@@ -68,16 +82,21 @@ const withVideo = (Component) => {
     }
 
     _handleChangeFullScreen() {
-      this._videoRef.current.requestFullscreen();
+      if (this._videoRef.current.requestFullscreen) {
+        this._videoRef.current.requestFullscreen();
+      } else {
+        this._videoRef.current.webkitEnterFullScreen();
+      }
     }
 
     render() {
-      const {progress} = this.state;
+      const {progress, duration} = this.state;
 
       return (
         <Component
           {...this.props}
           progress={progress}
+          duration={duration}
           onChangeFullScreen={this._handleChangeFullScreen}
         >
           <video
@@ -98,6 +117,7 @@ const withVideo = (Component) => {
     isPlaying: PropTypes.bool.isRequired,
     muted: PropTypes.bool.isRequired,
     load: PropTypes.bool.isRequired,
+    loop: PropTypes.bool.isRequired,
   };
 
   return WithVideo;

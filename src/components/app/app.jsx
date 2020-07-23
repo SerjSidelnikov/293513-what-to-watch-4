@@ -1,24 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import Main from '../main/main';
 import MoviePage from '../movie-page/movie-page';
 import Player from '../player/player';
 import SignIn from '../sing-in/sign-in';
-import films from '../../mocks/films';
+import AddReview from '../add-review/add-review';
+import PrivateRoute from '../private-route/private-route';
 import withVideo from '../../hocs/with-video/with-video';
 import withVideoPlayer from '../../hocs/with-video-palyer/with-video-player';
 import {getAuthorizationStatus} from '../../reducers/user/selectors';
 import {AuthorizationStatus} from '../../const';
-import {getIsLoading, getPromoFilm} from '../../reducers/data/selectors';
+import {getIdLoadingFilms, getIdLoadingPromo, getPromoFilm} from '../../reducers/data/selectors';
 import {filmType} from '../../types';
 
 const WrappedPlayer = withVideoPlayer(withVideo(Player));
 
-const App = ({authorizationStatus, isLoading, promoFilm}) => {
-  return (!isLoading &&
+const App = (props) => {
+  const {authorizationStatus, isLoadingFilms, isLoadingPromo, promoFilm} = props;
+  if (isLoadingFilms || isLoadingPromo) {
+    return null;
+  }
+
+  return (
     <Router>
       <Switch>
         <Route exact path={`/`}>
@@ -26,13 +32,20 @@ const App = ({authorizationStatus, isLoading, promoFilm}) => {
         </Route>
         <Route
           exact
-          path={`/movie-page/:id`}
-          render={(routeProps) => (
-            <MoviePage {...routeProps}/>
-          )}
+          path={`/films/:id`}
+          render={(routeProps) => {
+            return <MoviePage {...routeProps}/>;
+          }}
         />
-        <Route exact path={`/player`} render={(routeProps) => (
-          <WrappedPlayer {...routeProps} film={films[0]}/>
+        <PrivateRoute
+          exact
+          path={`/films/:id/review`}
+          render={(routeProps) => {
+            return <AddReview {...routeProps}/>;
+          }}
+        />
+        <Route exact path={`/player/:id`} render={(routeProps) => (
+          <WrappedPlayer {...routeProps}/>
         )}/>
         <Route exact path={`/login`}>
           {authorizationStatus === AuthorizationStatus.AUTH
@@ -47,13 +60,15 @@ const App = ({authorizationStatus, isLoading, promoFilm}) => {
 
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  isLoadingFilms: PropTypes.bool.isRequired,
+  isLoadingPromo: PropTypes.bool.isRequired,
   promoFilm: filmType,
 };
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
-  isLoading: getIsLoading(state),
+  isLoadingFilms: getIdLoadingFilms(state),
+  isLoadingPromo: getIdLoadingPromo(state),
   promoFilm: getPromoFilm(state),
 });
 
