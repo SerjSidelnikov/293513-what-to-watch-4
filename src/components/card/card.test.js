@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {BrowserRouter} from 'react-router-dom';
 
 import Card from './card';
 
@@ -8,13 +9,16 @@ const Element = () => <div>children</div>;
 describe(`Card`, () => {
   it(`Card rendered correctly`, () => {
     const tree = renderer.create(
-        <Card
-          name={``}
-          onMouseLeave={() => {}}
-          onMouseEnter={() => {}}
-        >
-          <Element/>
-        </Card>,
+        <BrowserRouter>
+          <Card
+            id={1}
+            name={``}
+            onMouseLeave={() => {}}
+            onMouseEnter={() => {}}
+          >
+            <Element/>
+          </Card>
+        </BrowserRouter>,
         {
           createNodeMock: () => {
             return {};

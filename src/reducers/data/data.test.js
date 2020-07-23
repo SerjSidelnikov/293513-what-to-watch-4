@@ -3,7 +3,6 @@ import {createApi} from '../../api';
 
 import {reducer, ActionType, Operation} from './data';
 import {ALL_GENRES} from '../../const';
-import reviews from "../../mocks/reviews";
 
 const api = createApi(() => {});
 
@@ -61,19 +60,36 @@ describe(`Data reducer work correctly`, () => {
     expect(reducer(void 0, {})).toEqual({
       films: [],
       genre: ALL_GENRES,
-      reviews,
       promoFilm: {},
-      isLoading: true,
+      isLoadingFilms: true,
+      isLoadingPromo: true,
     });
   });
 
-  it(`Reducer should update films by load questions`, () => {
+  it(`Reducer should update films by load films`, () => {
     expect(reducer({
-      films: []
+      films: [],
+      isLoadingFilms: true,
     }, {
       type: ActionType.LOAD_FILMS,
       payload: films,
-    })).toEqual({films});
+    })).toEqual({
+      films,
+      isLoadingFilms: false,
+    });
+  });
+
+  it(`Reducer should update promoFilm by load promo movie`, () => {
+    expect(reducer({
+      promoFilm: {},
+      isLoadingPromo: true,
+    }, {
+      type: ActionType.LOAD_PROMO_FILM,
+      payload: films[0],
+    })).toEqual({
+      promoFilm: films[0],
+      isLoadingPromo: false,
+    });
   });
 
   it(`Should change genre filter`, () => {
@@ -101,6 +117,25 @@ describe(`Data reducer work correctly`, () => {
         expect(dispatch).toHaveBeenCalled();
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_FILMS,
+          payload: [{fake: true}],
+        });
+      });
+  });
+
+  it(`Should make a correct API GET call to /films/promo`, () => {
+    const dispatch = jest.fn();
+    const apiMock = new MockAdapter(api);
+    const promoFilmsLoader = Operation.loadPromoFilms();
+
+    apiMock
+      .onGet(`/films/promo`)
+      .reply(200, [{fake: true}]);
+
+    return promoFilmsLoader(dispatch, jest.fn(), api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalled();
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_PROMO_FILM,
           payload: [{fake: true}],
         });
       });
