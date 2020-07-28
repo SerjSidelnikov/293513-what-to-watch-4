@@ -8,6 +8,7 @@ import MoviePage from '../movie-page/movie-page';
 import Player from '../player/player';
 import SignIn from '../sing-in/sign-in';
 import AddReview from '../add-review/add-review';
+import MyList from '../my-list/my-list';
 import PrivateRoute from '../private-route/private-route';
 import withVideo from '../../hocs/with-video/with-video';
 import withVideoPlayer from '../../hocs/with-video-palyer/with-video-player';
@@ -15,11 +16,12 @@ import {getAuthorizationStatus} from '../../reducers/user/selectors';
 import {AuthorizationStatus} from '../../const';
 import {getIdLoadingFilms, getIdLoadingPromo, getPromoFilm} from '../../reducers/data/selectors';
 import {filmType} from '../../types';
+import {Operation} from '../../reducers/data/data';
 
 const WrappedPlayer = withVideoPlayer(withVideo(Player));
 
 const App = (props) => {
-  const {authorizationStatus, isLoadingFilms, isLoadingPromo, promoFilm} = props;
+  const {authorizationStatus, isLoadingFilms, isLoadingPromo, promoFilm, toggleIsFavorite} = props;
   if (isLoadingFilms || isLoadingPromo) {
     return null;
   }
@@ -28,7 +30,11 @@ const App = (props) => {
     <Router>
       <Switch>
         <Route exact path={`/`}>
-          <Main promoFilm={promoFilm}/>
+          <Main
+            promoFilm={promoFilm}
+            authorizationStatus={authorizationStatus}
+            toggleIsFavorite={toggleIsFavorite}
+          />
         </Route>
         <Route
           exact
@@ -53,6 +59,11 @@ const App = (props) => {
             : <SignIn/>
           }
         </Route>
+        <PrivateRoute
+          exact={true}
+          path={`/myList`}
+          component={MyList}
+        />
       </Switch>
     </Router>
   );
@@ -63,6 +74,7 @@ App.propTypes = {
   isLoadingFilms: PropTypes.bool.isRequired,
   isLoadingPromo: PropTypes.bool.isRequired,
   promoFilm: filmType,
+  toggleIsFavorite: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -72,4 +84,10 @@ const mapStateToProps = (state) => ({
   promoFilm: getPromoFilm(state),
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  toggleIsFavorite: (id, status) => {
+    dispatch(Operation.toggleIsFavorite(id, status));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

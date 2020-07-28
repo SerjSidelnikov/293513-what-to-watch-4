@@ -1,14 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 import Header from '../header/header';
 import Catalog from '../catalog/catalog';
 import {filmType} from '../../types';
 import withCatalog from '../../hocs/with-catalog/with-catalog';
+import {AuthorizationStatus} from '../../const';
 
 const CatalogWrapped = withCatalog(Catalog);
 
-const Main = ({promoFilm}) => {
+const Main = ({promoFilm, authorizationStatus, toggleIsFavorite}) => {
+  const isFavorite = promoFilm[`is_favorite`];
+
   return (
     <>
       <section className="movie-card">
@@ -45,12 +49,27 @@ const Main = ({promoFilm}) => {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"/>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                {authorizationStatus === AuthorizationStatus.AUTH && (
+                  <button
+                    className="btn btn--list movie-card__button"
+                    type="button"
+                    onClick={() => toggleIsFavorite(promoFilm.id, Number(!isFavorite))}
+                  >
+                    {isFavorite
+                      ? (
+                        <svg viewBox="0 0 18 14" width="18" height="14">
+                          <use xlinkHref="#in-list"/>
+                        </svg>
+                      )
+                      : (
+                        <svg viewBox="0 0 19 20" width="19" height="20">
+                          <use xlinkHref="#add"/>
+                        </svg>
+                      )
+                    }
+                    <span>My list</span>
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -80,6 +99,8 @@ const Main = ({promoFilm}) => {
 
 Main.propTypes = {
   promoFilm: filmType,
+  authorizationStatus: PropTypes.string.isRequired,
+  toggleIsFavorite: PropTypes.func.isRequired,
 };
 
 export default Main;

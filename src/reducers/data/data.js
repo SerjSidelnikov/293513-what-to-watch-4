@@ -12,6 +12,7 @@ const ActionType = {
   CHANGE_GENRE_FILTER: `CHANGE_GENRE_FILTER`,
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
+  IS_FAVORITES: `IS_FAVORITES`,
 };
 
 const ActionCreator = {
@@ -27,6 +28,11 @@ const ActionCreator = {
 
   loadPromoFilms: (film) => ({
     type: ActionType.LOAD_PROMO_FILM,
+    payload: film,
+  }),
+
+  toggleIsFavorite: (film) => ({
+    type: ActionType.IS_FAVORITES,
     payload: film,
   }),
 };
@@ -50,6 +56,14 @@ const reducer = (state = initialState, action) => {
         isLoadingPromo: false,
       });
 
+    case ActionType.IS_FAVORITES:
+      const films = state.films.filter((it) => it.id !== action.payload.id);
+      const promoFilm = state.promoFilm.id === action.payload.id ? action.payload : state.promoFilm;
+      return Object.assign({}, state, {
+        films: [...films, action.payload],
+        promoFilm,
+      });
+
     default:
       return state;
   }
@@ -67,6 +81,13 @@ const Operation = {
     return api.get(`/films/promo`)
       .then((response) => {
         dispatch(ActionCreator.loadPromoFilms(response.data));
+      });
+  },
+
+  toggleIsFavorite: (id, status) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${id}/${status}`)
+      .then((response) => {
+        dispatch(ActionCreator.toggleIsFavorite(response.data));
       });
   },
 };
