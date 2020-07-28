@@ -103,6 +103,8 @@ describe(`Main`, () => {
           <BrowserRouter>
             <Main
               promoFilm={promoFilm}
+              toggleIsFavorite={() => {}}
+              authorizationStatus={``}
             />
           </BrowserRouter>
         </Provider>,

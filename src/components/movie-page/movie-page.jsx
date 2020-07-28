@@ -7,11 +7,13 @@ import Header from '../header/header';
 import Tabs from '../tabs/tabs';
 import CardList from '../card-list/card-list';
 import {filmType, reviewType} from '../../types';
-import {MORE_LIKE_FILMS} from '../../const';
+import {AuthorizationStatus, MORE_LIKE_FILMS} from '../../const';
 import withTabs from '../../hocs/with-tabs/with-tabs';
 import {getFilms} from '../../reducers/data/selectors';
 import {getIsLoadingReviews, getReviews} from '../../reducers/reviews/selectors';
-import {Operation} from '../../reducers/reviews/reviews';
+import {Operation as ReviewOperation} from '../../reducers/reviews/reviews';
+import {Operation as DataOperation} from '../../reducers/data/data';
+import {getAuthorizationStatus} from '../../reducers/user/selectors';
 
 const TabsWrapped = withTabs(Tabs);
 
@@ -33,7 +35,7 @@ class MoviePage extends React.PureComponent {
   }
 
   render() {
-    const {films, reviews, match, isLoadingReviews} = this.props;
+    const {films, reviews, match, isLoadingReviews, authorizationStatus, toggleIsFavorite} = this.props;
     const id = parseInt(match.params.id, 10);
 
     if (isLoadingReviews) {
@@ -41,7 +43,7 @@ class MoviePage extends React.PureComponent {
     }
 
     const film = films.find((it) => it.id === id);
-    const {name, genre, released, 'background_image': background, 'poster_image': poster} = film;
+    const {name, genre, released, 'background_image': background, 'poster_image': poster, 'is_favorite': isFavorite} = film;
 
     const filteredFilms = films
       .filter((filmItem) => filmItem.genre === genre)
@@ -78,13 +80,30 @@ class MoviePage extends React.PureComponent {
                     </svg>
                     <span>Play</span>
                   </Link>
-                  <button className="btn btn--list movie-card__button" type="button">
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"/>
-                    </svg>
-                    <span>My list</span>
-                  </button>
-                  <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
+                  {authorizationStatus === AuthorizationStatus.AUTH && (
+                    <>
+                      <button
+                        className="btn btn--list movie-card__button"
+                        type="button"
+                        onClick={() => toggleIsFavorite(film.id, Number(!isFavorite))}
+                      >
+                        {isFavorite
+                          ? (
+                            <svg viewBox="0 0 18 14" width="18" height="14">
+                              <use xlinkHref="#in-list"/>
+                            </svg>
+                          )
+                          : (
+                            <svg viewBox="0 0 19 20" width="19" height="20">
+                              <use xlinkHref="#add"/>
+                            </svg>
+                          )
+                        }
+                        <span>My list</span>
+                      </button>
+                      <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -144,18 +163,24 @@ MoviePage.propTypes = {
   }).isRequired,
   loadReviews: PropTypes.func.isRequired,
   isLoadingReviews: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  toggleIsFavorite: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   films: getFilms(state),
   reviews: getReviews(state),
   isLoadingReviews: getIsLoadingReviews(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   loadReviews: (id) => {
-    dispatch(Operation.loadReviews(id));
+    dispatch(ReviewOperation.loadReviews(id));
   },
+  toggleIsFavorite: (id, status) => {
+    dispatch(DataOperation.toggleIsFavorite(id, status));
+  }
 });
 
 export {MoviePage};
