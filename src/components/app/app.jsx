@@ -13,7 +13,7 @@ import PrivateRoute from '../private-route/private-route';
 import withVideo from '../../hocs/with-video/with-video';
 import withVideoPlayer from '../../hocs/with-video-palyer/with-video-player';
 import {getAuthorizationStatus} from '../../reducers/user/selectors';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus, AppRoute} from '../../const';
 import {getIdLoadingFilms, getIdLoadingPromo, getPromoFilm} from '../../reducers/data/selectors';
 import {filmType} from '../../types';
 import {Operation} from '../../reducers/data/data';
@@ -29,7 +29,7 @@ const App = (props) => {
   return (
     <Router>
       <Switch>
-        <Route exact path={`/`}>
+        <Route exact path={AppRoute.ROOT}>
           <Main
             promoFilm={promoFilm}
             authorizationStatus={authorizationStatus}
@@ -38,30 +38,30 @@ const App = (props) => {
         </Route>
         <Route
           exact
-          path={`/films/:id`}
+          path={`${AppRoute.FILMS}/:id`}
           render={(routeProps) => {
             return <MoviePage {...routeProps}/>;
           }}
         />
         <PrivateRoute
           exact
-          path={`/films/:id/review`}
+          path={`${AppRoute.FILMS}/:id/review`}
           render={(routeProps) => {
             return <AddReview {...routeProps}/>;
           }}
         />
-        <Route exact path={`/player/:id`} render={(routeProps) => (
+        <Route exact path={`${AppRoute.PLAYER}/:id`} render={(routeProps) => (
           <WrappedPlayer {...routeProps}/>
         )}/>
-        <Route exact path={`/login`}>
+        <Route exact path={AppRoute.LOGIN}>
           {authorizationStatus === AuthorizationStatus.AUTH
-            ? <Redirect to={`/`}/>
+            ? <Redirect to={AppRoute.ROOT}/>
             : <SignIn/>
           }
         </Route>
         <PrivateRoute
           exact={true}
-          path={`/myList`}
+          path={AppRoute.MY_LIST}
           component={MyList}
         />
       </Switch>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 
-import {COUNT_RATING, Status} from '../../const';
+import {AppRoute, COUNT_RATING, Status} from '../../const';
 import {filmType} from '../../types';
 import {getFilms} from '../../reducers/data/selectors';
 import {Operation} from '../../reducers/reviews/reviews';
@@ -56,7 +56,7 @@ class AddReview extends React.PureComponent {
     const ratings = new Array(COUNT_RATING).fill(``);
 
     if (statusTransfer === Status.SUCCESS) {
-      return <Redirect to={`/films/${id}`}/>;
+      return <Redirect to={`${AppRoute.FILMS}/${id}`}/>;
     }
 
     return (
@@ -74,7 +74,7 @@ class AddReview extends React.PureComponent {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to={`/films/${id}`} className="breadcrumbs__link">{name}</Link>
+                  <Link to={`${AppRoute.FILMS}/${id}`} className="breadcrumbs__link">{name}</Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -138,7 +138,6 @@ class AddReview extends React.PureComponent {
             </div>
           </form>
         </div>
-
       </section>
     );
   }

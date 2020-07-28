@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link, useHistory} from 'react-router-dom';
 
+import {AppRoute} from '../../const';
+
 const Card = (props) => {
   const {id, name, onMouseEnter, onMouseLeave, children} = props;
   const history = useHistory();
@@ -12,7 +14,7 @@ const Card = (props) => {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={() => {
-        history.push(`/films/${id}`);
+        history.push(`${AppRoute.FILMS}/${id}`);
       }}
     >
       <div className="small-movie-card__image">
@@ -20,7 +22,7 @@ const Card = (props) => {
       </div>
       <h3 className="small-movie-card__title">
         <Link
-          to={`/films/${id}`}
+          to={`${AppRoute.FILMS}/${id}`}
           className="small-movie-card__link"
         >{name}</Link>
       </h3>

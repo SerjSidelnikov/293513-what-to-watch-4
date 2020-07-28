@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import {AuthorizationStatus} from '../const';
+import {AppRoute, AuthorizationStatus} from '../const';
 import {getAuthorizationStatus} from '../reducers/user/selectors';
 
 const UserBlock = ({authorizationStatus}) => {
@@ -12,11 +12,11 @@ const UserBlock = ({authorizationStatus}) => {
       {
         authorizationStatus === AuthorizationStatus.AUTH
           ? (
-            <Link to={`/myList`} className="user-block__avatar" style={{display: `block`}}>
+            <Link to={AppRoute.MY_LIST} className="user-block__avatar" style={{display: `block`}}>
               <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63"/>
             </Link>
           )
-          : <Link to={`/login`} className="user-block__link">Sign in</Link>
+          : <Link to={AppRoute.LOGIN} className="user-block__link">Sign in</Link>
       }
     </div>
   );
