@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import Header from '../header/header';
+import Logo from '../logo/logo';
+import UserBlock from '../../user-block/user-block';
 import Tabs from '../tabs/tabs';
 import CardList from '../card-list/card-list';
 import {filmType, reviewType} from '../../types';
@@ -59,7 +60,10 @@ class MoviePage extends React.PureComponent {
 
             <h1 className="visually-hidden">WTW</h1>
 
-            <Header/>
+            <header className="page-header movie-card__head">
+              <Logo/>
+              <UserBlock/>
+            </header>
 
             <div className="movie-card__wrap">
               <div className="movie-card__desc">

@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
-import Header from '../header/header';
+import Logo from '../logo/logo';
+import UserBlock from '../../user-block/user-block';
 import Catalog from '../catalog/catalog';
 import {filmType} from '../../types';
 import withCatalog from '../../hocs/with-catalog/with-catalog';
@@ -22,7 +23,10 @@ const Main = ({promoFilm, authorizationStatus, toggleIsFavorite}) => {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header/>
+        <header className="page-header movie-card__head">
+          <Logo/>
+          <UserBlock/>
+        </header>
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">

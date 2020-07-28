@@ -4,6 +4,7 @@ const initialState = {
   films: [],
   genre: ALL_GENRES,
   promoFilm: {},
+  favoriteFilms: [],
   isLoadingFilms: true,
   isLoadingPromo: true,
 };
@@ -12,6 +13,7 @@ const ActionType = {
   CHANGE_GENRE_FILTER: `CHANGE_GENRE_FILTER`,
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
+  LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
   IS_FAVORITES: `IS_FAVORITES`,
 };
 
@@ -29,6 +31,11 @@ const ActionCreator = {
   loadPromoFilms: (film) => ({
     type: ActionType.LOAD_PROMO_FILM,
     payload: film,
+  }),
+
+  loadFavoriteFilms: (films) => ({
+    type: ActionType.LOAD_FAVORITE_FILMS,
+    payload: films,
   }),
 
   toggleIsFavorite: (film) => ({
@@ -56,6 +63,11 @@ const reducer = (state = initialState, action) => {
         isLoadingPromo: false,
       });
 
+    case ActionType.LOAD_FAVORITE_FILMS:
+      return Object.assign({}, state, {
+        favoriteFilms: action.payload,
+      });
+
     case ActionType.IS_FAVORITES:
       const films = state.films.filter((it) => it.id !== action.payload.id);
       const promoFilm = state.promoFilm.id === action.payload.id ? action.payload : state.promoFilm;
@@ -81,6 +93,13 @@ const Operation = {
     return api.get(`/films/promo`)
       .then((response) => {
         dispatch(ActionCreator.loadPromoFilms(response.data));
+      });
+  },
+
+  loadFavoriteFilms: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        dispatch(ActionCreator.loadFavoriteFilms(response.data));
       });
   },
 

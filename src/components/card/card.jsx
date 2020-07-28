@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 const Card = (props) => {
   const {id, name, onMouseEnter, onMouseLeave, children} = props;
+  const history = useHistory();
 
   return (
     <article
       className="small-movie-card catalog__movies-card"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onClick={() => {
+        history.push(`/films/${id}`);
+      }}
     >
       <div className="small-movie-card__image">
         {children}

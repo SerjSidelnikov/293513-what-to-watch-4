@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 
-import Header from '../header/header';
 import {COUNT_RATING, Status} from '../../const';
 import {filmType} from '../../types';
 import {getFilms} from '../../reducers/data/selectors';
 import {Operation} from '../../reducers/reviews/reviews';
 import {getStatusTransfer} from '../../reducers/reviews/selectors';
+import Logo from '../logo/logo';
+import UserBlock from '../../user-block/user-block';
 
 class AddReview extends React.PureComponent {
   constructor(props) {
@@ -67,7 +68,9 @@ class AddReview extends React.PureComponent {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <Header>
+          <header className="page-header">
+            <Logo/>
+
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
@@ -78,7 +81,9 @@ class AddReview extends React.PureComponent {
                 </li>
               </ul>
             </nav>
-          </Header>
+
+            <UserBlock/>
+          </header>
 
           <div className="movie-card__poster movie-card__poster--small">
             <img
