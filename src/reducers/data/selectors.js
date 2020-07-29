@@ -29,6 +29,10 @@ export const getPromoFilm = (state) => {
   return state[NAME_SPACE].promoFilm;
 };
 
+export const getFavoriteFilms = (state) => {
+  return state[NAME_SPACE].favoriteFilms;
+};
+
 export const getIdLoadingFilms = (state) => {
   return state[NAME_SPACE].isLoadingFilms;
 };

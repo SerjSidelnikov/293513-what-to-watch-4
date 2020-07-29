@@ -16,7 +16,7 @@ const CardList = ({films}) => {
           id={film.id}
           name={film.name}
           src={film[`preview_video_link`]}
-          poster={film[`poster_image`]}
+          poster={film[`preview_image`]}
           muted={true}
         />
       ))}

@@ -1,34 +1,28 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import configureStore from 'redux-mock-store';
+import renderer from 'react-test-renderer';
 
-import Header from './header';
+import {SignIn} from './sign-in';
 import NameSpace from '../../reducers/name-space';
-import {AuthorizationStatus} from '../../const';
 
 const mockStore = configureStore([]);
 
-describe(`Header`, () => {
-  it(`Header rendered correctly`, () => {
+describe(`SignIn`, () => {
+  it(`SignIn rendered correctly`, () => {
     const store = mockStore({
       [NameSpace.USER]: {
-        authorizationStatus: AuthorizationStatus.AUTH,
+        error: false,
       },
     });
 
     const tree = renderer.create(
         <Provider store={store}>
           <BrowserRouter>
-            <Header/>
+            <SignIn onSubmit={() => {}} error={false}/>
           </BrowserRouter>
-        </Provider>,
-        {
-          createNodeMock: () => {
-            return {};
-          }
-        }
+        </Provider>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

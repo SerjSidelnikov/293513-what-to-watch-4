@@ -3,17 +3,19 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import Header from '../header/header';
+import Logo from '../logo/logo';
+import UserBlock from '../user-block/user-block';
 import Tabs from '../tabs/tabs';
 import CardList from '../card-list/card-list';
 import {filmType, reviewType} from '../../types';
-import {AuthorizationStatus, MORE_LIKE_FILMS} from '../../const';
+import {AppRoute, AuthorizationStatus, MORE_LIKE_FILMS} from '../../const';
 import withTabs from '../../hocs/with-tabs/with-tabs';
 import {getFilms} from '../../reducers/data/selectors';
 import {getIsLoadingReviews, getReviews} from '../../reducers/reviews/selectors';
 import {Operation as ReviewOperation} from '../../reducers/reviews/reviews';
 import {Operation as DataOperation} from '../../reducers/data/data';
 import {getAuthorizationStatus} from '../../reducers/user/selectors';
+import Footer from '../footer/footer';
 
 const TabsWrapped = withTabs(Tabs);
 
@@ -59,7 +61,10 @@ class MoviePage extends React.PureComponent {
 
             <h1 className="visually-hidden">WTW</h1>
 
-            <Header/>
+            <header className="page-header movie-card__head">
+              <Logo/>
+              <UserBlock/>
+            </header>
 
             <div className="movie-card__wrap">
               <div className="movie-card__desc">
@@ -71,7 +76,7 @@ class MoviePage extends React.PureComponent {
 
                 <div className="movie-card__buttons">
                   <Link
-                    to={`/player/${id}`}
+                    to={`${AppRoute.PLAYER}/${id}`}
                     className="btn btn--play movie-card__button"
                     type="button"
                   >
@@ -101,7 +106,7 @@ class MoviePage extends React.PureComponent {
                         }
                         <span>My list</span>
                       </button>
-                      <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
+                      <Link to={`${AppRoute.FILMS}/${id}/review`} className="btn movie-card__button">Add review</Link>
                     </>
                   )}
                 </div>
@@ -134,19 +139,7 @@ class MoviePage extends React.PureComponent {
             <CardList films={filteredFilms}/>
           </section>
 
-          <footer className="page-footer">
-            <div className="logo">
-              <a href="main.html" className="logo__link logo__link--light">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
-
-            <div className="copyright">
-              <p>© 2019 What to watch Ltd.</p>
-            </div>
-          </footer>
+          <Footer/>
         </div>
       </>
     );

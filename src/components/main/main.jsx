@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
-import Header from '../header/header';
+import Logo from '../logo/logo';
+import UserBlock from '../user-block/user-block';
 import Catalog from '../catalog/catalog';
+import Footer from '../footer/footer';
 import {filmType} from '../../types';
 import withCatalog from '../../hocs/with-catalog/with-catalog';
-import {AuthorizationStatus} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 
 const CatalogWrapped = withCatalog(Catalog);
 
@@ -22,7 +24,10 @@ const Main = ({promoFilm, authorizationStatus, toggleIsFavorite}) => {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header/>
+        <header className="page-header movie-card__head">
+          <Logo/>
+          <UserBlock/>
+        </header>
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">
@@ -43,7 +48,7 @@ const Main = ({promoFilm, authorizationStatus, toggleIsFavorite}) => {
               </p>
 
               <div className="movie-card__buttons">
-                <Link to={`/player/${promoFilm.id}`} className="btn btn--play movie-card__button" type="button">
+                <Link to={`${AppRoute.PLAYER}/${promoFilm.id}`} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"/>
                   </svg>
@@ -79,19 +84,7 @@ const Main = ({promoFilm, authorizationStatus, toggleIsFavorite}) => {
       <div className="page-content">
         <CatalogWrapped/>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     </>
   );
