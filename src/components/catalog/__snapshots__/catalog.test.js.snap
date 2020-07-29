@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Catalog Catalog rendered correctly 1`] = `
+<section
+  className="catalog"
+>
+  <h2
+    className="catalog__title visually-hidden"
+  >
+    Catalog
+  </h2>
+  <ul
+    className="catalog__genres-list"
+  >
+    <li
+      className="catalog__genres-item"
+    >
+      <a
+        className="catalog__genres-link"
+        href="#"
+        onClick={[Function]}
+      >
+        Crime
+      </a>
+    </li>
+  </ul>
+  <div
+    className="catalog__movies-list"
+  >
+    <article
+      className="small-movie-card catalog__movies-card"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          autoPlay={false}
+          height="100%"
+          preload="none"
+          width="100%"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/1"
+          onClick={[Function]}
+        >
+          Once Upon a Time in America
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          autoPlay={false}
+          height="100%"
+          preload="none"
+          width="100%"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/2"
+          onClick={[Function]}
+        >
+          No Country for Old Men
+        </a>
+      </h3>
+    </article>
+  </div>
+  <div
+    className="catalog__more"
+  >
+    <button
+      className="catalog__button"
+      onClick={[Function]}
+      type="button"
+    >
+      Show more
+    </button>
+  </div>
+</section>
+`;

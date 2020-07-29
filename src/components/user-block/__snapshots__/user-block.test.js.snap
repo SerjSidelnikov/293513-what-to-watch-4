@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserBlock UserBlock rendered correctly (User is logged in) 1`] = `
+<div
+  className="user-block"
+>
+  <a
+    className="user-block__avatar"
+    href="/myList"
+    onClick={[Function]}
+    style={
+      Object {
+        "display": "block",
+      }
+    }
+  >
+    <img
+      alt="User avatar"
+      height="63"
+      src="/img/avatar.jpg"
+      width="63"
+    />
+  </a>
+</div>
+`;
+
+exports[`UserBlock UserBlock rendered correctly (User is not logged in) 1`] = `
+<div
+  className="user-block"
+>
+  <a
+    className="user-block__link"
+    href="/login"
+    onClick={[Function]}
+  >
+    Sign in
+  </a>
+</div>
+`;
