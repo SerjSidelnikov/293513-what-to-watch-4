@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import {AppRoute, AuthorizationStatus} from '../const';
-import {getAuthorizationStatus} from '../reducers/user/selectors';
+import {AppRoute, AuthorizationStatus} from '../../const';
+import {getAuthorizationStatus} from '../../reducers/user/selectors';
 
 const UserBlock = ({authorizationStatus}) => {
   return (

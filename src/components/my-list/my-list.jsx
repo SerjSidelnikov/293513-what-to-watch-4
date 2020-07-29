@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import Logo from '../logo/logo';
-import UserBlock from '../../user-block/user-block';
+import UserBlock from '../user-block/user-block';
 import CardList from '../card-list/card-list';
 import Footer from '../footer/footer';
 import {getFavoriteFilms} from '../../reducers/data/selectors';

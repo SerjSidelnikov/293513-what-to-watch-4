@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 import Logo from '../logo/logo';
-import UserBlock from '../../user-block/user-block';
+import UserBlock from '../user-block/user-block';
 import Catalog from '../catalog/catalog';
 import Footer from '../footer/footer';
 import {filmType} from '../../types';

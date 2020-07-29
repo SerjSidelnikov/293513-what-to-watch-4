@@ -40,3 +40,5 @@ export const MORE_LIKE_FILMS = 4;
 export const ALL_GENRES = `All genres`;
 export const MAX_SHOW_FILM = 8;
 export const COUNT_RATING = 5;
+export const MAX_LENGTH_COMMENT = 400;
+export const MIN_LENGTH_COMMENT = 50;

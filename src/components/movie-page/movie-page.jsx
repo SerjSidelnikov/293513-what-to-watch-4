@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import Logo from '../logo/logo';
-import UserBlock from '../../user-block/user-block';
+import UserBlock from '../user-block/user-block';
 import Tabs from '../tabs/tabs';
 import CardList from '../card-list/card-list';
 import {filmType, reviewType} from '../../types';

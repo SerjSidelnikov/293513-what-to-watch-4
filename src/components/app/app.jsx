@@ -12,6 +12,7 @@ import MyList from '../my-list/my-list';
 import PrivateRoute from '../private-route/private-route';
 import withVideo from '../../hocs/with-video/with-video';
 import withVideoPlayer from '../../hocs/with-video-palyer/with-video-player';
+import withAddReview from '../../hocs/with-add-review/with-add-review';
 import {getAuthorizationStatus} from '../../reducers/user/selectors';
 import {AuthorizationStatus, AppRoute} from '../../const';
 import {getIdLoadingFilms, getIdLoadingPromo, getPromoFilm} from '../../reducers/data/selectors';
@@ -19,6 +20,7 @@ import {filmType} from '../../types';
 import {Operation} from '../../reducers/data/data';
 
 const WrappedPlayer = withVideoPlayer(withVideo(Player));
+const WrappedAddReview = withAddReview(AddReview);
 
 const App = (props) => {
   const {authorizationStatus, isLoadingFilms, isLoadingPromo, promoFilm, toggleIsFavorite} = props;
@@ -47,7 +49,7 @@ const App = (props) => {
           exact
           path={`${AppRoute.FILMS}/:id/review`}
           render={(routeProps) => {
-            return <AddReview {...routeProps}/>;
+            return <WrappedAddReview {...routeProps}/>;
           }}
         />
         <Route exact path={`${AppRoute.PLAYER}/:id`} render={(routeProps) => (

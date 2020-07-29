@@ -61,6 +61,7 @@ describe(`Data reducer work correctly`, () => {
       films: [],
       genre: ALL_GENRES,
       promoFilm: {},
+      favoriteFilms: [],
       isLoadingFilms: true,
       isLoadingPromo: true,
     });
@@ -89,6 +90,17 @@ describe(`Data reducer work correctly`, () => {
     })).toEqual({
       promoFilm: films[0],
       isLoadingPromo: false,
+    });
+  });
+
+  it(`Reducer should update favoriteFilms by load favorite movies`, () => {
+    expect(reducer({
+      favoriteFilms: [],
+    }, {
+      type: ActionType.LOAD_FAVORITE_FILMS,
+      payload: films,
+    })).toEqual({
+      favoriteFilms: films,
     });
   });
 
@@ -136,6 +148,25 @@ describe(`Data reducer work correctly`, () => {
         expect(dispatch).toHaveBeenCalled();
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_PROMO_FILM,
+          payload: [{fake: true}],
+        });
+      });
+  });
+
+  it(`Should make a correct API GET call to /favorite`, () => {
+    const dispatch = jest.fn();
+    const apiMock = new MockAdapter(api);
+    const favoriteFilmsLoader = Operation.loadFavoriteFilms();
+
+    apiMock
+      .onGet(`/favorite`)
+      .reply(200, [{fake: true}]);
+
+    return favoriteFilmsLoader(dispatch, jest.fn(), api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalled();
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_FAVORITE_FILMS,
           payload: [{fake: true}],
         });
       });
