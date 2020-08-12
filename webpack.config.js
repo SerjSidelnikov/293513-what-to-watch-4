@@ -1,7 +1,7 @@
 const path = require(`path`);
 
 module.exports = {
-  entry: `./src/index.jsx`,
+  entry: `./src/index.tsx`,
   output: {
     filename: `bundle.js`,
     path: path.join(__dirname, `public`), // eslint-disable-line
@@ -22,12 +22,16 @@ module.exports = {
         use: {
           loader: `babel-loader`,
         },
+      },
+      {
+        test: /\.(tsx|ts)?$/,
+        loader: `ts-loader`,
       }
     ],
   },
 
   resolve: {
-    extensions: [`.js`, `.jsx`, `.json`]
+    extensions: [`.js`, `.ts`, `.tsx`, `.json`]
   },
 
   devtool: `source-map`,
