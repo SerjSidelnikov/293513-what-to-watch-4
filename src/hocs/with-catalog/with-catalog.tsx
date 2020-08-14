@@ -1,14 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
+import {Subtract} from 'utility-types';
 
-import {MAX_SHOW_FILM} from '../../const';
 import {getActiveGenre, getFilteredFilms, getGenres} from '../../reducers/data/selectors';
 import {ActionCreator as DataActionCreator} from '../../reducers/data/data';
-import {filmType} from '../../types';
+import {Film} from '../../types';
+import {MAX_SHOW_FILM} from '../../const';
+
+interface Props {
+  films: Array<Film>,
+  genres: Array<string>,
+  activeGenre: string,
+  onChangeGenre: (genre: string) => void,
+}
+
+interface State {
+  chunk: number,
+}
 
 const withCatalog = (Component) => {
-  class WithCatalog extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, Props>;
+
+  class WithCatalog extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -44,13 +58,6 @@ const withCatalog = (Component) => {
       );
     }
   }
-
-  WithCatalog.propTypes = {
-    films: PropTypes.arrayOf(filmType).isRequired,
-    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-    activeGenre: PropTypes.string.isRequired,
-    onChangeGenre: PropTypes.func.isRequired,
-  };
 
   const mapStateToProps = (state) => ({
     films: getFilteredFilms(state),

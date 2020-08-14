@@ -1,14 +1,33 @@
-import React from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
+import {Subtract} from 'utility-types';
 
-import {filmType} from '../../types';
 import {getFilms} from '../../reducers/data/selectors';
 import {getStatusTransfer} from '../../reducers/reviews/selectors';
 import {Operation} from '../../reducers/reviews/reviews';
+import {Film} from '../../types';
+
+interface State {
+  rating: number,
+  comment: string,
+}
+
+interface Props {
+  films: Array<Film>,
+  match: {
+    params: {
+      id: string,
+    }
+  },
+  addReview: () => void,
+  statusTransfer: string,
+}
 
 const withAddReview = (Component) => {
-  class WithAddReview extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, Props>;
+
+  class WithAddReview extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -26,11 +45,11 @@ const withAddReview = (Component) => {
 
       if (name === `rating`) {
         this.setState({
-          [name]: parseInt(evt.target.value, 10),
+          rating: parseInt(evt.target.value, 10),
         });
       } else {
         this.setState({
-          [name]: evt.target.value,
+          comment: evt.target.value,
         });
       }
     }
@@ -63,17 +82,6 @@ const withAddReview = (Component) => {
       );
     }
   }
-
-  WithAddReview.propTypes = {
-    films: PropTypes.arrayOf(filmType).isRequired,
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        id: PropTypes.string,
-      }).isRequired
-    }).isRequired,
-    addReview: PropTypes.func.isRequired,
-    statusTransfer: PropTypes.string.isRequired,
-  };
 
   const mapStateToProps = (state) => ({
     films: getFilms(state),

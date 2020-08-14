@@ -1,10 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {Link, useHistory} from 'react-router-dom';
 
 import {AppRoute} from '../../const';
 
-const Card = (props) => {
+interface Props {
+  id: number,
+  name: string,
+  onMouseEnter: () => void,
+  onMouseLeave: () => void,
+}
+
+const Card: React.FC<Props> = (props) => {
   const {id, name, onMouseEnter, onMouseLeave, children} = props;
   const history = useHistory();
 
@@ -28,14 +34,6 @@ const Card = (props) => {
       </h3>
     </article>
   );
-};
-
-Card.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
 };
 
 export default Card;

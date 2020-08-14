@@ -1,10 +1,11 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 
 import App from './app';
-import {ALL_GENRES, AuthorizationStatus, Status} from '../../const';
+import {ALL_GENRES} from '../../const';
+import {AuthorizationStatus, Status} from '../../types';
 import NameSpace from '../../reducers/name-space';
 
 const films = [

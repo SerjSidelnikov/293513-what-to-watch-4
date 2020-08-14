@@ -1,9 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 
-import {filmType} from '../../types';
+import {Film} from '../../types';
 import {timeFormat} from '../../utils';
 
-const Details = ({film}) => {
+interface Props {
+  film: Film,
+}
+
+const Details: React.FC<Props> = ({film}) => {
   const {director, starring, 'run_time': duration, genre, released} = film;
   const time = timeFormat(duration);
 
@@ -38,10 +42,6 @@ const Details = ({film}) => {
       </div>
     </div>
   );
-};
-
-Details.propTypes = {
-  film: filmType,
 };
 
 export default Details;

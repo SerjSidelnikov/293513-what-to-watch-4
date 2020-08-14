@@ -1,12 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import configureStore from 'redux-mock-store';
-import renderer from 'react-test-renderer';
+import * as renderer from 'react-test-renderer';
 
 import UserBlock from './user-block';
 import NameSpace from '../../reducers/name-space';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus} from '../../types';
 
 const mockStore = configureStore([]);
 

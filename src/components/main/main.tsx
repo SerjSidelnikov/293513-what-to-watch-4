@@ -1,18 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {Link} from 'react-router-dom';
 
 import Logo from '../logo/logo';
 import UserBlock from '../user-block/user-block';
 import Catalog from '../catalog/catalog';
 import Footer from '../footer/footer';
-import {filmType} from '../../types';
 import withCatalog from '../../hocs/with-catalog/with-catalog';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {Film, AuthorizationStatus} from '../../types';
+import {AppRoute} from '../../const';
 
 const CatalogWrapped = withCatalog(Catalog);
 
-const Main = ({promoFilm, authorizationStatus, toggleIsFavorite}) => {
+interface Props {
+  promoFilm: Film,
+  authorizationStatus: AuthorizationStatus,
+  toggleIsFavorite: (id: number, status: number) => void,
+}
+
+const Main: React.FC<Props> = ({promoFilm, authorizationStatus, toggleIsFavorite}) => {
   const isFavorite = promoFilm[`is_favorite`];
 
   return (
@@ -88,12 +93,6 @@ const Main = ({promoFilm, authorizationStatus, toggleIsFavorite}) => {
       </div>
     </>
   );
-};
-
-Main.propTypes = {
-  promoFilm: filmType,
-  authorizationStatus: PropTypes.string.isRequired,
-  toggleIsFavorite: PropTypes.func.isRequired,
 };
 
 export default Main;

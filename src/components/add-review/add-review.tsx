@@ -1,13 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {Link, Redirect} from 'react-router-dom';
 
-import {AppRoute, COUNT_RATING, MAX_LENGTH_COMMENT, MIN_LENGTH_COMMENT, Status} from '../../const';
-import {filmType} from '../../types';
+import {AppRoute, COUNT_RATING, MAX_LENGTH_COMMENT, MIN_LENGTH_COMMENT} from '../../const';
+import {Film, Status} from '../../types';
 import Logo from '../logo/logo';
 import UserBlock from '../user-block/user-block';
 
-const AddReview = (props) => {
+interface Props {
+  film: Film,
+  id: number,
+  statusTransfer: string,
+  comment: string,
+  rating: number,
+  onChange: () => void,
+  onSubmitReview: () => void,
+}
+
+const AddReview: React.FC<Props> = (props) => {
   const {film, id, statusTransfer, rating, comment, onChange, onSubmitReview} = props;
   const {name, 'background_image': background, 'poster_image': poster} = film;
   const ratings = new Array(COUNT_RATING).fill(``);
@@ -98,16 +107,6 @@ const AddReview = (props) => {
       </div>
     </section>
   );
-};
-
-AddReview.propTypes = {
-  film: filmType,
-  id: PropTypes.number,
-  statusTransfer: PropTypes.string.isRequired,
-  comment: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onSubmitReview: PropTypes.func.isRequired,
 };
 
 export default AddReview;

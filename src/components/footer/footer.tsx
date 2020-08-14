@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import {Link} from 'react-router-dom';
 
 import {AppRoute} from '../../const';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="page-footer">
       <div className="logo">

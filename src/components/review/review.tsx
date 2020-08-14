@@ -1,9 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 
-import {reviewType} from '../../types';
+import {Review} from '../../types';
 import {ratingFormat, dateFormat} from '../../utils';
 
-const Review = ({review}) => {
+interface Props {
+  review: Review,
+}
+
+const Review: React.FC<Props> = ({review}) => {
   const {user, date, comment, rating} = review;
 
   return (
@@ -20,10 +24,6 @@ const Review = ({review}) => {
       <div className="review__rating">{ratingFormat(rating)}</div>
     </div>
   );
-};
-
-Review.propTypes = {
-  review: reviewType,
 };
 
 export default Review;

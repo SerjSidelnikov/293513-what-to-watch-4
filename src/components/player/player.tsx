@@ -1,9 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import {timeLeftFormat} from '../../utils';
 
-const Player = (props) => {
+interface Props {
+  isPlaying: boolean,
+  onTogglePlaying: () => void,
+  name: string,
+  progress: number,
+  duration: number,
+  onChangeFullScreen: () => void,
+  history: {
+    goBack: () => void,
+  }
+}
+
+const Player: React.FC<Props> = (props) => {
   const {children, isPlaying, onTogglePlaying, name, progress, duration, onChangeFullScreen} = props;
 
   return (
@@ -56,17 +67,6 @@ const Player = (props) => {
       </div>
     </div>
   );
-};
-
-Player.propTypes = {
-  children: PropTypes.node.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  onTogglePlaying: PropTypes.func.isRequired,
-  progress: PropTypes.number.isRequired,
-  duration: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  onChangeFullScreen: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
 };
 
 export default Player;

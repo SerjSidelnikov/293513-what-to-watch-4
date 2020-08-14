@@ -1,13 +1,13 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 
 import Main from './main';
 import NameSpace from '../../reducers/name-space';
-import {ALL_GENRES, AuthorizationStatus} from '../../const';
-import reviews from '../../mocks/reviews';
+import {ALL_GENRES} from '../../const';
+import {AuthorizationStatus} from '../../types';
 
 const mockStore = configureStore([]);
 
@@ -82,6 +82,7 @@ const films = [
     "preview_video_link": `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
 ];
+const noop = () => {};
 
 describe(`Main`, () => {
   it(`Main rendered correctly`, () => {
@@ -89,7 +90,6 @@ describe(`Main`, () => {
       [NameSpace.DATA]: {
         films,
         genre: ALL_GENRES,
-        reviews,
         promoFilm,
         isLoading: false,
       },
@@ -103,8 +103,8 @@ describe(`Main`, () => {
           <BrowserRouter>
             <Main
               promoFilm={promoFilm}
-              toggleIsFavorite={() => {}}
-              authorizationStatus={``}
+              toggleIsFavorite={noop}
+              authorizationStatus={AuthorizationStatus.AUTH}
             />
           </BrowserRouter>
         </Provider>,

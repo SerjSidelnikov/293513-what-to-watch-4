@@ -1,12 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
+import {Subtract} from 'utility-types';
 
-import {filmType} from '../../types';
 import {getFilms} from '../../reducers/data/selectors';
+import {Film} from '../../types';
+
+interface Props {
+  films: Array<Film>,
+  match: {
+    params: {
+      id: string,
+    }
+  },
+}
+
+interface State {
+  isPlaying: boolean,
+}
 
 const withVideoPlayer = (Component) => {
-  class WithVideoPlayer extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, Props>;
+
+  class WithVideoPlayer extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -46,15 +62,6 @@ const withVideoPlayer = (Component) => {
       );
     }
   }
-
-  WithVideoPlayer.propTypes = {
-    films: PropTypes.arrayOf(filmType).isRequired,
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        id: PropTypes.string,
-      }).isRequired
-    }).isRequired,
-  };
 
   const mapStateToProps = (state) => ({
     films: getFilms(state),

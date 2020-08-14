@@ -1,16 +1,37 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {Subtract} from 'utility-types';
+
+interface Props {
+  src: string,
+  poster: string,
+  muted: boolean,
+  load: boolean,
+  loop: boolean,
+  isPlaying: boolean,
+}
+
+interface State {
+  isLoading: boolean,
+  isPlayingReal: boolean,
+  progress: number,
+  duration: number,
+}
 
 const withVideo = (Component) => {
-  class WithVideo extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, Props>;
+
+  class WithVideo extends React.PureComponent<T, State> {
+    private videoRef: React.RefObject<HTMLVideoElement>;
+
     constructor(props) {
       super(props);
 
-      this._videoRef = React.createRef();
+      this.videoRef = React.createRef();
 
       this.state = {
         isLoading: true,
-        isPlaying: props.isPlaying,
+        isPlayingReal: props.isPlaying,
         progress: 0,
         duration: 0,
       };
@@ -20,7 +41,7 @@ const withVideo = (Component) => {
 
     componentDidMount() {
       const {src, poster, muted} = this.props;
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       video.src = src;
       video.poster = poster;
@@ -34,11 +55,11 @@ const withVideo = (Component) => {
       };
 
       video.onplay = () => {
-        this.setState({isPlaying: true});
+        this.setState({isPlayingReal: true});
       };
 
       video.onpause = () => {
-        this.setState({isPlaying: false});
+        this.setState({isPlayingReal: false});
         if (this.props.load) {
           video.load();
         }
@@ -55,14 +76,14 @@ const withVideo = (Component) => {
 
         if (!loop && (current === duration)) {
           this.setState({
-            isPlaying: false,
+            isPlayingReal: false,
           });
         }
       };
     }
 
     componentDidUpdate() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       if (this.props.isPlaying) {
         video.play();
@@ -72,7 +93,7 @@ const withVideo = (Component) => {
     }
 
     componentWillUnmount() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       video.src = ``;
       video.oncanplaythrough = null;
@@ -82,10 +103,10 @@ const withVideo = (Component) => {
     }
 
     _handleChangeFullScreen() {
-      if (this._videoRef.current.requestFullscreen) {
-        this._videoRef.current.requestFullscreen();
+      if (this.videoRef.current.requestFullscreen) {
+        this.videoRef.current.requestFullscreen();
       } else {
-        this._videoRef.current.webkitEnterFullScreen();
+        // this.videoRef.current.webkitEnterFullScreen();
       }
     }
 
@@ -100,7 +121,7 @@ const withVideo = (Component) => {
           onChangeFullScreen={this._handleChangeFullScreen}
         >
           <video
-            ref={this._videoRef}
+            ref={this.videoRef}
             width="100%"
             height="100%"
             preload="none"
@@ -110,15 +131,6 @@ const withVideo = (Component) => {
       );
     }
   }
-
-  WithVideo.propTypes = {
-    src: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    isPlaying: PropTypes.bool.isRequired,
-    muted: PropTypes.bool.isRequired,
-    load: PropTypes.bool.isRequired,
-    loop: PropTypes.bool.isRequired,
-  };
 
   return WithVideo;
 };

@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 
@@ -14,15 +13,23 @@ import withVideo from '../../hocs/with-video/with-video';
 import withVideoPlayer from '../../hocs/with-video-palyer/with-video-player';
 import withAddReview from '../../hocs/with-add-review/with-add-review';
 import {getAuthorizationStatus} from '../../reducers/user/selectors';
-import {AuthorizationStatus, AppRoute} from '../../const';
+import {AppRoute} from '../../const';
 import {getIdLoadingFilms, getIdLoadingPromo, getPromoFilm} from '../../reducers/data/selectors';
-import {filmType} from '../../types';
+import {Film, AuthorizationStatus} from '../../types';
 import {Operation} from '../../reducers/data/data';
 
 const WrappedPlayer = withVideoPlayer(withVideo(Player));
 const WrappedAddReview = withAddReview(AddReview);
 
-const App = (props) => {
+interface Props {
+  authorizationStatus: AuthorizationStatus,
+  isLoadingFilms: boolean,
+  isLoadingPromo: boolean,
+  promoFilm: Film,
+  toggleIsFavorite: (id: number, status: number) => void,
+}
+
+const App: React.FC<Props> = (props) => {
   const {authorizationStatus, isLoadingFilms, isLoadingPromo, promoFilm, toggleIsFavorite} = props;
   if (isLoadingFilms || isLoadingPromo) {
     return null;
@@ -69,14 +76,6 @@ const App = (props) => {
       </Switch>
     </Router>
   );
-};
-
-App.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  isLoadingFilms: PropTypes.bool.isRequired,
-  isLoadingPromo: PropTypes.bool.isRequired,
-  promoFilm: filmType,
-  toggleIsFavorite: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

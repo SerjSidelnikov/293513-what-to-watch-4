@@ -1,12 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import GenreList from '../genre-list/genre-list';
 import CardList from '../card-list/card-list';
 import ButtonShowMore from '../button-show-more/button-show-more';
-import {filmType} from '../../types';
+import {Film} from '../../types';
 
-const Catalog = (props) => {
+interface Props {
+  films: Array<Film>,
+  genres: Array<string>,
+  activeGenre: string,
+  onChangeGenre: () => void,
+  onShowMore: () => void,
+  isMoreFilms: boolean,
+}
+
+const Catalog: React.FC<Props> = (props) => {
   const {films, genres, activeGenre, onChangeGenre, onShowMore, isMoreFilms} = props;
 
   return (
@@ -24,15 +32,6 @@ const Catalog = (props) => {
       {isMoreFilms && <ButtonShowMore onShowMore={onShowMore}/>}
     </section>
   );
-};
-
-Catalog.propTypes = {
-  films: PropTypes.arrayOf(filmType).isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeGenre: PropTypes.string.isRequired,
-  onChangeGenre: PropTypes.func.isRequired,
-  isMoreFilms: PropTypes.bool.isRequired,
-  onShowMore: PropTypes.func.isRequired,
 };
 
 export default Catalog;

@@ -6,12 +6,6 @@ export const RatingEnum = {
   AWESOME: `Awesome`,
 };
 
-export const TabsEnum = {
-  OVERVIEW: `overview`,
-  DETAILS: `details`,
-  REVIEWS: `reviews`,
-};
-
 export const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,

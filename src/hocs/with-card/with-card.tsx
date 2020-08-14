@@ -1,14 +1,28 @@
-import React from 'react';
+import * as React from 'react';
+import {Subtract} from 'utility-types';
 
 const DELAY = 1000;
 
+interface Props {
+  isPlaying: boolean,
+}
+
+interface State {
+  isPlayingReal: boolean,
+}
+
 const withCard = (Component) => {
-  class WrappedComponent extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, Props>;
+
+  class WrappedComponent extends React.PureComponent<T, State> {
+    private timer: NodeJS.Timeout;
+
     constructor(props) {
       super(props);
 
       this.state = {
-        isPlaying: false,
+        isPlayingReal: false,
       };
 
       this._handleMouseEnter = this._handleMouseEnter.bind(this);
@@ -16,27 +30,27 @@ const withCard = (Component) => {
     }
 
     componentWillUnmount() {
-      clearTimeout(this._timer);
+      clearTimeout(this.timer);
     }
 
     _handleMouseEnter() {
-      this._timer = setTimeout(() => {
-        this.setState({isPlaying: true});
+      this.timer = setTimeout(() => {
+        this.setState({isPlayingReal: true});
       }, DELAY);
     }
 
     _handleMouseLeave() {
-      clearTimeout(this._timer);
-      this.setState({isPlaying: false});
+      clearTimeout(this.timer);
+      this.setState({isPlayingReal: false});
     }
 
     render() {
-      const {isPlaying} = this.state;
+      const {isPlayingReal} = this.state;
 
       return (
         <Component
           {...this.props}
-          isPlaying={isPlaying}
+          isPlaying={isPlayingReal}
           load={true}
           loop={true}
           onMouseEnter={this._handleMouseEnter}

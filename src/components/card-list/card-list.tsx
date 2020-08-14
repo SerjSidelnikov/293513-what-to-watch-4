@@ -1,13 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import Card from '../card/card';
 import withCard from '../../hocs/with-card/with-card';
 import withVideo from '../../hocs/with-video/with-video';
+import {Film} from '../../types';
+
+interface Props {
+  films: Array<Film>,
+}
 
 const CardWrapped = withCard(withVideo(Card));
 
-const CardList = ({films}) => {
+const CardList: React.FC<Props> = ({films}) => {
   return (
     <div className="catalog__movies-list">
       {films.map((film) => (
@@ -22,10 +26,6 @@ const CardList = ({films}) => {
       ))}
     </div>
   );
-};
-
-CardList.propTypes = {
-  films: PropTypes.array.isRequired,
 };
 
 export default CardList;

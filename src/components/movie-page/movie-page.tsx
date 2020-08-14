@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
@@ -7,19 +6,33 @@ import Logo from '../logo/logo';
 import UserBlock from '../user-block/user-block';
 import Tabs from '../tabs/tabs';
 import CardList from '../card-list/card-list';
-import {filmType, reviewType} from '../../types';
-import {AppRoute, AuthorizationStatus, MORE_LIKE_FILMS} from '../../const';
+import Footer from '../footer/footer';
 import withTabs from '../../hocs/with-tabs/with-tabs';
 import {getFilms} from '../../reducers/data/selectors';
 import {getIsLoadingReviews, getReviews} from '../../reducers/reviews/selectors';
 import {Operation as ReviewOperation} from '../../reducers/reviews/reviews';
 import {Operation as DataOperation} from '../../reducers/data/data';
 import {getAuthorizationStatus} from '../../reducers/user/selectors';
-import Footer from '../footer/footer';
+import {Film, Review, AuthorizationStatus} from '../../types';
+import {AppRoute, MORE_LIKE_FILMS} from '../../const';
 
 const TabsWrapped = withTabs(Tabs);
 
-class MoviePage extends React.PureComponent {
+interface Props {
+  films: Array<Film>,
+  reviews: Array<Review>
+  loadReviews: (id: string) => void,
+  match: {
+    params: {
+      id: string
+    }
+  },
+  isLoadingReviews: boolean,
+  authorizationStatus: AuthorizationStatus,
+  toggleIsFavorite: (id: number, status: number) => void,
+}
+
+class MoviePage extends React.PureComponent<Props, null> {
   componentDidMount() {
     window.scrollTo(0, 0);
     const {loadReviews, match} = this.props;
@@ -145,20 +158,6 @@ class MoviePage extends React.PureComponent {
     );
   }
 }
-
-MoviePage.propTypes = {
-  films: PropTypes.arrayOf(filmType).isRequired,
-  reviews: PropTypes.arrayOf(reviewType).isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string,
-    }).isRequired
-  }).isRequired,
-  loadReviews: PropTypes.func.isRequired,
-  isLoadingReviews: PropTypes.bool.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  toggleIsFavorite: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state) => ({
   films: getFilms(state),

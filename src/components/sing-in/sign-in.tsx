@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 
 import Logo from '../logo/logo';
@@ -7,7 +6,20 @@ import Footer from '../footer/footer';
 import {Operation} from '../../reducers/user/user';
 import {getError} from '../../reducers/user/selectors';
 
-class SignIn extends React.PureComponent {
+interface DataUser {
+  login: string,
+  password: string,
+}
+
+interface Props {
+  onSubmit: ({login, password}: DataUser) => void,
+  error: boolean,
+}
+
+class SignIn extends React.PureComponent<Props, null> {
+  private loginRef: React.RefObject<HTMLInputElement>;
+  private passwordRef: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
 
@@ -75,11 +87,6 @@ class SignIn extends React.PureComponent {
     );
   }
 }
-
-SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  error: PropTypes.bool.isRequired,
-};
 
 const mapStateToProps = (state) => ({
   error: getError(state),

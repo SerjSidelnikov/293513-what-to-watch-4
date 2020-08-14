@@ -1,7 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
-const GenreList = ({genres, activeGenre, onChangeGenre}) => {
+interface Props {
+  genres: Array<string>,
+  activeGenre: string,
+  onChangeGenre: (genre: string) => void,
+}
+
+const GenreList: React.FC<Props> = ({genres, activeGenre, onChangeGenre}) => {
   return (
     <ul className="catalog__genres-list">
       {genres.map((genre, index) => (
@@ -21,12 +26,6 @@ const GenreList = ({genres, activeGenre, onChangeGenre}) => {
       ))}
     </ul>
   );
-};
-
-GenreList.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeGenre: PropTypes.string.isRequired,
-  onChangeGenre: PropTypes.func.isRequired,
 };
 
 export default GenreList;

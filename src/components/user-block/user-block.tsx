@@ -1,12 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import {AppRoute, AuthorizationStatus} from '../../const';
 import {getAuthorizationStatus} from '../../reducers/user/selectors';
+import {AppRoute} from '../../const';
+import {AuthorizationStatus} from '../../types';
 
-const UserBlock = ({authorizationStatus}) => {
+interface Props {
+  authorizationStatus: AuthorizationStatus,
+}
+
+const UserBlock: React.FC<Props> = ({authorizationStatus}) => {
   return (
     <div className="user-block">
       {
@@ -20,10 +24,6 @@ const UserBlock = ({authorizationStatus}) => {
       }
     </div>
   );
-};
-
-UserBlock.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -1,12 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import configureStore from 'redux-mock-store';
-import renderer from 'react-test-renderer';
+import * as renderer from 'react-test-renderer';
 
 import {MyList} from './my-list';
 import NameSpace from '../../reducers/name-space';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus} from '../../types';
 
 const films = [
   {
@@ -56,6 +56,7 @@ const films = [
     "preview_video_link": `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
 ];
+const noop = () => {};
 
 const mockStore = configureStore([]);
 
@@ -74,7 +75,7 @@ describe(`MyList`, () => {
           <BrowserRouter>
             <MyList
               films={films}
-              loadFavoriteFilms={() => {}}
+              loadFavoriteFilms={noop}
             />
           </BrowserRouter>
         </Provider>,

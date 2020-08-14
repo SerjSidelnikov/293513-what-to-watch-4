@@ -1,13 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 
 import Overview from '../overview/overview';
 import Details from '../details/details';
 import ReviewList from '../review-list/review-list';
-import {filmType, reviewType} from '../../types';
-import {TabsEnum} from '../../const';
+import {Film, Review, TabsEnum} from '../../types';
 
-const Tabs = ({film, reviews, activeTab, onClickTab}) => {
+interface Props {
+  film: Film,
+  reviews: Array<Review>,
+  activeTab: TabsEnum,
+  onClickTab: (tab: TabsEnum) => void,
+}
+
+const Tabs: React.FC<Props> = ({film, reviews, activeTab, onClickTab}) => {
   const renderTab = (tab) => {
     switch (tab) {
       case TabsEnum.OVERVIEW:
@@ -61,13 +66,6 @@ const Tabs = ({film, reviews, activeTab, onClickTab}) => {
       {renderTab(activeTab)}
     </>
   );
-};
-
-Tabs.propTypes = {
-  film: filmType,
-  reviews: PropTypes.arrayOf(reviewType),
-  activeTab: PropTypes.string.isRequired,
-  onClickTab: PropTypes.func.isRequired,
 };
 
 export default Tabs;

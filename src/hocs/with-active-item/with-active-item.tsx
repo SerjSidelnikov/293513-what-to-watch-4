@@ -1,7 +1,13 @@
-import React from 'react';
+import * as React from 'react';
+
+interface State {
+  isActive: boolean
+}
 
 const withActiveItem = (Component) => {
-  class WrappedComponent extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+
+  class WrappedComponent extends React.PureComponent<P, State> {
     constructor(props) {
       super(props);
 

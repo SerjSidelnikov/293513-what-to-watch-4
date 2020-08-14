@@ -1,10 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 
-import {filmType} from '../../types';
+import {Film} from '../../types';
 import {ratingFormat, getRatingString} from '../../utils';
 import {ACTORS_MAX_LENGTH} from '../../const';
 
-const Overview = ({film}) => {
+interface Props {
+  film: Film,
+}
+
+const Overview: React.FC<Props> = ({film}) => {
   const {rating, 'scores_count': voiceCount, description, director, starring} = film;
 
   return (
@@ -26,10 +30,6 @@ const Overview = ({film}) => {
       </div>
     </>
   );
-};
-
-Overview.propTypes = {
-  film: filmType,
 };
 
 export default Overview;

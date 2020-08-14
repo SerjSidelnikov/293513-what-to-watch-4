@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import {BrowserRouter} from 'react-router-dom';
-import renderer from 'react-test-renderer';
+import * as renderer from 'react-test-renderer';
 
 import Catalog from './catalog';
 
@@ -53,6 +53,8 @@ const films = [
   },
 ];
 
+const noop = () => {};
+
 describe(`Catalog`, () => {
   it(`Catalog rendered correctly`, () => {
     const tree = renderer.create(
@@ -61,9 +63,9 @@ describe(`Catalog`, () => {
             films={films}
             genres={[`Crime`]}
             activeGenre={`All genre`}
-            onChangeGenre={() => {}}
+            onChangeGenre={noop}
             isMoreFilms={true}
-            onShowMore={() => {}}
+            onShowMore={noop}
           />
         </BrowserRouter>,
         {

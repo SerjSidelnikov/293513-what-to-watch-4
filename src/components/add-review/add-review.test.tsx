@@ -1,12 +1,12 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 
 import AddReview from './add-review';
 import NameSpace from '../../reducers/name-space';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus} from '../../types';
 
 const film = {
   "name": `No Country for Old Men`,
@@ -32,6 +32,8 @@ const film = {
   "preview_video_link": `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
 };
 
+const noop = () => {};
+
 const mockStore = configureStore([]);
 
 describe(`AddReview`, () => {
@@ -50,8 +52,8 @@ describe(`AddReview`, () => {
               statusTransfer={``}
               comment={``}
               rating={1}
-              onChange={() => {}}
-              onSubmitReview={() => {}}
+              onChange={noop}
+              onSubmitReview={noop}
             />
           </BrowserRouter>
         </Provider>
