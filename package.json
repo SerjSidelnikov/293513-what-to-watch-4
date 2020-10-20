@@ -2,15 +2,24 @@
   "name": "what-to-watch",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://serjsidelnikov.github.io/what-to-watch/",
   "description": "Личный проект «Что посмотреть» от HTML Academy",
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server",
+<<<<<<< HEAD
     "eslint": "npm run eslint.js && npm run eslint.ts",
     "eslint.js": "eslint --ext .jsx --ext .js src/",
     "eslint.ts": "eslint --config .eslintrc-ts.yml --ext .tsx src/",
     "test": "npm run eslint && npm run test.jest",
     "test.jest": "jest"
+=======
+    "eslint": "eslint --ext .jsx --ext .js src/",
+    "test": "npm run eslint && npm run test:jest",
+    "test:jest": "jest",
+    "deploy": "gh-pages -d public",
+    "predeploy": "npm run build"
+>>>>>>> 0c767757746a3045167e3bae4a606cb1c5467b9b
   },
   "devDependencies": {
     "@babel/core": "7.10.2",
@@ -46,6 +55,7 @@
   },
   "dependencies": {
     "axios": "0.19.2",
+    "gh-pages": "^3.1.0",
     "history": "5.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
